@@ -1,80 +1,102 @@
 package org.example;
 
-import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.HashMap;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+
 public class Dictionary {
-    private final String fileName;
-    protected ArrayList<Word> dictionary = new ArrayList<>(1);
-    public Dictionary(String fileName) {
-        this.fileName = fileName;
+    protected HashMap<Character,Node> roots = new HashMap<>();
+    protected FileManage fileManage = new FileManage();
+
+    public Dictionary() {
+        insert();
     }
 
-    /*import from file.*/
-    protected void importFromFile() {
-        try {
-            File myCheck = new File(fileName);
-            Scanner myReader = new Scanner(myCheck);
-            String dataWordTarget;
-            String dataWordExplain;
-            while (myReader.hasNextLine()) {
-                dataWordTarget = myReader.nextLine();
-                if (myReader.hasNextLine()) {
-                    dataWordExplain = myReader.nextLine();
-                }
-                else {
-                    dataWordExplain = "";
-                }
-                Word temp = new Word(dataWordTarget,dataWordExplain);
-                dictionary.add(temp);
-            }
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("wait ...");
-        }
+    public ArrayList<Word> lookUp(String data) {
+        return new ArrayList<>(lookUpFor(roots.get(data.charAt(0)), data.substring(1)));
     }
 
-    /*Export to file.*/
-    protected void exportToFile() {
-        try {
-            FileWriter myWriter = new FileWriter("dictionaries.txt");
-            int cnt = 0;
-            while (cnt < dictionary.size()) {
-                myWriter.write(dictionary.get(cnt).getWord_target() + "\n");
-                myWriter.write(dictionary.get(cnt).getWord_explain() + "\n");
-                cnt++;
+    public ArrayList<Word> lookUpFor(Node node, String data) {
+        ArrayList<Word> ans = new ArrayList<>();
+        if (!data.isEmpty()) {
+            return lookUpFor(node.children.get(data.charAt(0)), data.substring(1));
+        }
+        else {
+            if (node.endOfWord) {
+                ans.add(fileManage.dictionary.get(node.wordIndex));
             }
-            myWriter.close();
+            ans.addAll(disPlay(node));
         }
-        catch (IOException e) {
-            System.out.println("ouch, we have a bug.");
-        }
+        return ans;
     }
 
-    /*find the word from e_word*/
-    protected int searchWord(String data) {
-        int cnt = 0;
-        while (cnt < dictionary.size()) {
-            if (data.equals(dictionary.get(cnt).getWord_target())) {
-                return cnt;
-            }
-            cnt++;
+    public ArrayList<Word> disPlay(Node node) {
+        ArrayList<Word> ans = new ArrayList<>();
+        if (node == null) {
+            return null;
+        }
+        if (node.endOfWord) {
+            ans.add(fileManage.dictionary.get(node.wordIndex));
+        }
+        for (Character key: node.children.keySet()) {
+            ans.addAll(disPlay(node.children.get(key)));
+        }
+        return ans;
+    }
+
+    public int search(String data) {
+        if (roots.containsKey(data.charAt(0))) {
+            return searchFor(roots.get(data.charAt(0)),data.substring(1));
         }
         return -1;
     }
 
-    /*print out word*/
-    protected void printWord(int index) {
-        if (index >= 0) {
-            System.out.println(dictionary.get(index).getWord_target() + ": " + dictionary.get(index).getWord_explain());
-        } else {
-            System.out.println("can not find word");
+    public int searchFor(Node node, String data) {
+        if (node == null) {
+            return -1;
         }
+        if (data.isEmpty()) {
+            if (node.endOfWord) {
+                return node.wordIndex;
+            }
+            else {
+                return -1;
+            }
+        }
+        return searchFor(node.children.get(data.charAt(0)), data.substring(1));
     }
 
 
+    /**
+     * Insert a word into the dictionary.
+     * The word to insert.
+     */
+    private void insert() {
+        for (int i = 0; i < fileManage.dictionary.size(); i++) {
+            String string = fileManage.dictionary.get(i).getWord_target();
+            if (!roots.containsKey(string.charAt(0))) {
+                roots.put(string.charAt(0), new Node());
+            }
 
+            insertWord(string.substring(1),i, roots.get(string.charAt(0)));
+        }
+    }
+
+    //Adds a new word to the trie tree.
+    private void insertWord(String string,int wordIndex, Node node) {
+        final Node nextChild;
+        if (node.children.containsKey(string.charAt(0))) {
+            nextChild = node.children.get(string.charAt(0));
+        } else {
+            nextChild = new Node();
+            node.children.put(string.charAt(0), nextChild);
+        }
+
+        if (string.length() == 1) {
+            nextChild.endOfWord = true;
+            nextChild.wordIndex = wordIndex;
+        } else {
+            insertWord(string.substring(1),wordIndex,nextChild);
+        }
+    }
 }
