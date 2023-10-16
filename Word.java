@@ -18,6 +18,13 @@ public class Word {
 
     public Word() {}
 
+    public boolean equal(Word e) {
+        if (this.word_target.equals(e.word_target)) {
+            return true;
+        }
+        return false;
+    }
+
     public Word(String word_target, String word_explain) {
         this.word_target = word_target;
         this.word_explain = word_explain;
