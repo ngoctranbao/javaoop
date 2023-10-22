@@ -8,12 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileManage {
-    protected String fileName = "src\\main\\resources\\dictionaries.txt";
-    protected ArrayList<Word> dictionary = new ArrayList<>();
-
-    public FileManage() {
-        importFromFile(fileName,dictionary);
-    }
 
     public void importFromFile(String name, ArrayList<Word> dic) {
         try {

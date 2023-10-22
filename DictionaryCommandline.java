@@ -10,15 +10,13 @@ public class DictionaryCommandline {
         Scanner myReading = new Scanner(System.in);
         System.out.println("This is My Dictionary!\n" +
                 "[0] Exit\n" +
-//                "[1] Add\n" +
-//                "[2] Remove\n" +
-//                "[3] Update\n" +
+                "[1] Add to your list\n" +
+                "[2] Remove from your list\n" +
+                "[3] Update actually mean show up your list\n" +
                 "[4] Display\n" +
                 "[5] Lookup\n" +
                 "[6] Search\n" +
-//                "[7] Game\n" +
-//                "[8] Import from file\n" +
-                "[9] Export to file\n"+
+                "[7] Game\n" +
                 "Your action: ");
         String data;
 
@@ -31,10 +29,13 @@ public class DictionaryCommandline {
                     checkExit = true;
                     break;
                 case "1":
+                    hehe.requireAdd();
                     break;
                 case "2":
+                    hehe.requireRemove();
                     break;
                 case "3":
+                    hehe.requireShowUpList();
                     break;
                 case "4":
                     hehe.requireDisplay();
@@ -46,10 +47,7 @@ public class DictionaryCommandline {
                     hehe.requireSearch();
                     break;
                 case "7":
-                    break;
-                case "8":
-                    break;
-                case "9":
+                    hehe.requireGame();
                     break;
                 default:
                     System.out.println("hmm, i don't understand, can you try again ?");
@@ -61,5 +59,4 @@ public class DictionaryCommandline {
         }
         myReading.close();
     }
-
 }

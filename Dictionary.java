@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class Dictionary {
     protected HashMap<Character,Node> roots = new HashMap<>();
     protected FileManage fileManage = new FileManage();
+    protected Database database = new Database();
 
     public Dictionary() {
         insert();
@@ -18,12 +19,15 @@ public class Dictionary {
 
     public ArrayList<Word> lookUpFor(Node node, String data) {
         ArrayList<Word> ans = new ArrayList<>();
+        if (node == null) {
+            return ans;
+        }
         if (!data.isEmpty()) {
             return lookUpFor(node.children.get(data.charAt(0)), data.substring(1));
         }
         else {
             if (node.endOfWord) {
-                ans.add(fileManage.dictionary.get(node.wordIndex));
+                ans.add(database.dictionary.get(node.wordIndex));
             }
             ans.addAll(disPlay(node));
         }
@@ -36,7 +40,7 @@ public class Dictionary {
             return null;
         }
         if (node.endOfWord) {
-            ans.add(fileManage.dictionary.get(node.wordIndex));
+            ans.add(database.dictionary.get(node.wordIndex));
         }
         for (Character key: node.children.keySet()) {
             ans.addAll(disPlay(node.children.get(key)));
@@ -72,8 +76,8 @@ public class Dictionary {
      * The word to insert.
      */
     private void insert() {
-        for (int i = 0; i < fileManage.dictionary.size(); i++) {
-            String string = fileManage.dictionary.get(i).getWord_target();
+        for (int i = 0; i < database.dictionary.size(); i++) {
+            String string = database.dictionary.get(i).getWord_target();
             if (!roots.containsKey(string.charAt(0))) {
                 roots.put(string.charAt(0), new Node());
             }
@@ -85,18 +89,27 @@ public class Dictionary {
     //Adds a new word to the trie tree.
     private void insertWord(String string,int wordIndex, Node node) {
         final Node nextChild;
-        if (node.children.containsKey(string.charAt(0))) {
-            nextChild = node.children.get(string.charAt(0));
-        } else {
-            nextChild = new Node();
-            node.children.put(string.charAt(0), nextChild);
-        }
+        try {
+            if (string.isEmpty()){
+                return;
+            }
 
-        if (string.length() == 1) {
-            nextChild.endOfWord = true;
-            nextChild.wordIndex = wordIndex;
-        } else {
-            insertWord(string.substring(1),wordIndex,nextChild);
+            if (node.children.containsKey(string.charAt(0))) {
+                nextChild = node.children.get(string.charAt(0));
+            } else {
+                nextChild = new Node();
+                node.children.put(string.charAt(0), nextChild);
+            }
+
+            if (string.length() == 1) {
+                nextChild.endOfWord = true;
+                nextChild.wordIndex = wordIndex;
+            } else {
+                insertWord(string.substring(1),wordIndex,nextChild);
+            }
+        }
+        catch (StringIndexOutOfBoundsException e) {
+            System.out.println("insert wrong and i don't know why");
         }
     }
 }
