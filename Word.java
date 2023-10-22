@@ -34,28 +34,22 @@ public class Word {
         this.word_type = word_type;
     }
 
-    public Word() {}
-
-    public boolean equal(Word e) {
-        return this.word_target.equals(e.word_target);
-    }
-
     public Word(String word_target, String word_explain) {
         this.word_target = word_target;
         this.word_explain = word_explain;
     }
 
-    /** word don't have type*/
-    public Word(String word_target, String word_explain, String word_pronunciation) {
-        this.word_target = word_target;
-        this.word_explain = word_explain;
-        this.word_pronunciation = word_pronunciation;
-    }
-
-
     public Word(String word_target, String word_explain, String word_pronunciation, String word_type) {
         this(word_target,word_explain);
         this.word_pronunciation = word_pronunciation;
         this.word_type = word_type;
+    }
+
+    @Override
+    public String toString() {
+        return  word_target + ": \n" +
+                "\t" + word_type+ "\n" +
+                "\t" + word_pronunciation + "\n" +
+                "\t" + word_explain + "\n";
     }
 }

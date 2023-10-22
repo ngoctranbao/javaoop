@@ -1,10 +1,11 @@
 package org.example;
 
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class Database {
-    public static final String URL = "jdbc:sqlite:src\\main\\resources\\dict_hh.db";
+    private static final String URL = "jdbc:sqlite:src\\main\\resources\\dict_hh.db";
     private Connection connection;
     protected ArrayList<Word> dictionary = new ArrayList<>();
 
@@ -134,6 +135,44 @@ public class Database {
         } catch (SQLException e) {
             System.out.println("return null error");
             System.out.println(e.getMessage());
+        }
+    }
+
+    public ArrayList<Word> getDatabase() {
+        return dictionary;
+    }
+
+    public void importFromFile(String name, ArrayList<Integer> dic) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(name));
+            String line;
+            String temp;
+            while ((line = reader.readLine()) != null) {
+                temp = line;
+                Integer integer = new Integer(temp);
+                dic.add(integer);
+            }
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("wait ...");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected void exportToFile(String name,ArrayList<Integer> dic) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(name));
+            int cnt = 0;
+            while (cnt < dic.size()) {
+                writer.write(dic.get(cnt));
+                writer.write(dic.get(cnt));
+                cnt++;
+            }
+            writer.close();
+        }
+        catch (IOException e) {
+            System.out.println("ouch, we have a bug.");
         }
     }
 }

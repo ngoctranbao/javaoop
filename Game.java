@@ -5,11 +5,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    private final static FileManage fileManage = new FileManage();
-    private final ArrayList<Word> dictionary = new ArrayList<>();
+    private final static Database database = new Database();
+    private final ArrayList<Integer> dictionary = new ArrayList<>();
 
     public Game() {
-        fileManage.importFromFile("src/main/resources/wordpackage.txt", dictionary);
+        database.importFromFile("src/main/resources/wordpackage.txt", dictionary);
     }
     private final Random rand = new Random(System.currentTimeMillis());
 
@@ -49,7 +49,7 @@ public class Game {
         Integer wrongAnswer = 0;
 
         for (int i = 0;i < 10; i++) {
-            question(dictionary.get(temp[i]), wrongAnswer);
+            question(database.dictionary.get(dictionary.get(temp[i])), wrongAnswer);
             if (wrongAnswer >= 5) {
                 System.out.println("You lose!");
                 return;

@@ -1,66 +1,63 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DictionaryManagement extends Dictionary {
 
-    private final Scanner temporary = new Scanner(System.in);
     private final SearchHistory searchHistory = new SearchHistory();
     private final YourWord yourWord = new YourWord();
     private final Game game = new Game();
 
     public DictionaryManagement() {
-        fileManage.importFromFile("src/main/resources/recentsearchword.txt", searchHistory.recentWord);
-        fileManage.importFromFile("src/main/resources/wordpackage.txt", yourWord.yourPackage);
+        database.importFromFile("src/main/resources/recentsearchword.txt", searchHistory.recentWord);
+        database.importFromFile("src/main/resources/wordpackage.txt", yourWord.yourPackage);
     }
 
     public void requireExit() {
-        fileManage.exportToFile("src/main/resources/recentsearchword.txt", searchHistory.recentWord);
-        fileManage.exportToFile("src/main/resources/wordpackage.txt", yourWord.yourPackage);
+        database.exportToFile("src/main/resources/recentsearchword.txt", searchHistory.recentWord);
+        database.exportToFile("src/main/resources/wordpackage.txt", yourWord.yourPackage);
         database.close();
-        temporary.close();
     }
 
-    public void requireLookUp() {
-        String data = temporary.nextLine();
+    public void requireLookUp(String data) {
         ArrayList<Word> temp;
         temp = this.lookUp(data);
         for (Word word : temp) {
-            System.out.println( word.getWord_target() + ": \n" +
-                                word.getWord_type()+ "\n" +
-                                word.getWord_pronunciation() + "\n" +
-                                word.getWord_explain() + "\n");
+            System.out.println(word);
         }
     }
 
-    public void requireSearch() {
-        String data = temporary.nextLine();
+    public void requireSearch(String data) {
         int cnt = search(data);
         if (cnt < 0) {
             System.out.println("Sorry, we may don't have this word");
         }
         else {
-            searchHistory.newSearch(database.dictionary.get(cnt));
-            System.out.println( database.dictionary.get(cnt).getWord_target() + ": \n" +
-                    database.dictionary.get(cnt).getWord_type() + "\n" +
-                    database.dictionary.get(cnt).getWord_pronunciation() + "\n" +
-                    database.dictionary.get(cnt).getWord_explain() + "\n");
+            searchHistory.newSearch(cnt);
+            System.out.println(database.dictionary.get(cnt));
         }
     }
 
-    public void requireDisplay() {
-        searchHistory.requireDisplay();
+    public void requireShowUpRecentWord() {
+        if (searchHistory.recentWord.isEmpty()) {
+            System.out.println("You have not search anything");
+            return;
+        }
+        int cnt = searchHistory.recentWord.size() - 1;
+        while (cnt >= 0) {
+            int temp = searchHistory.recentWord.get(cnt);
+            System.out.println(database.dictionary.get(temp));
+            cnt--;
+        }
     }
 
-    public void requireAdd() {
-        String data = temporary.nextLine();
+    public void requireAdd(String data) {
         int cnt = search(data);
         if (cnt < 0) {
             System.out.println("You can't add this word");
         }
         else {
-            yourWord.requireAdd(database.dictionary.get(cnt));
+            yourWord.requireAdd(cnt);
             System.out.println("Add success");
         }
     }
@@ -69,18 +66,22 @@ public class DictionaryManagement extends Dictionary {
         game.game();
     }
 
-    public void requireRemove() {
-        String data = temporary.nextLine();
+    public void requireRemove(String data) {
         int cnt = search(data);
         if (cnt < 0) {
             System.out.println("We don't even have this word");
         }
         else {
-            yourWord.requireRemove(database.dictionary.get(cnt));
+            yourWord.requireRemove(cnt);
         }
     }
 
-    public void requireShowUpList() {
-        yourWord.requireDisplay();
+    public void requireShowUpYourWord() {
+        int cnt = 0;
+        while (cnt < yourWord.yourPackage.size()) {
+            int temp = yourWord.yourPackage.get(cnt);
+            System.out.println(database.dictionary.get(temp));
+            cnt++;
+        }
     }
 }

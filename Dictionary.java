@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 public class Dictionary {
     protected HashMap<Character,Node> roots = new HashMap<>();
-    protected FileManage fileManage = new FileManage();
     protected Database database = new Database();
 
     public Dictionary() {
@@ -17,7 +16,7 @@ public class Dictionary {
         return new ArrayList<>(lookUpFor(roots.get(data.charAt(0)), data.substring(1)));
     }
 
-    public ArrayList<Word> lookUpFor(Node node, String data) {
+    private ArrayList<Word> lookUpFor(Node node, String data) {
         ArrayList<Word> ans = new ArrayList<>();
         if (node == null) {
             return ans;
@@ -34,7 +33,7 @@ public class Dictionary {
         return ans;
     }
 
-    public ArrayList<Word> disPlay(Node node) {
+    private ArrayList<Word> disPlay(Node node) {
         ArrayList<Word> ans = new ArrayList<>();
         if (node == null) {
             return null;
@@ -55,7 +54,7 @@ public class Dictionary {
         return -1;
     }
 
-    public int searchFor(Node node, String data) {
+    private int searchFor(Node node, String data) {
         if (node == null) {
             return -1;
         }
