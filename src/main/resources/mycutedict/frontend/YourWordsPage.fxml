@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ScenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mycutedict.frontend.YourWordsPageController">
+   <children>
+      <ImageView fitHeight="360.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/YourWordsPage.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="DateLabel" layoutX="213.0" layoutY="117.0" />
+      <StackPane layoutX="297.0" layoutY="78.0" prefHeight="20.6" prefWidth="126.0">
+         <children>
+            <ImageView fitHeight="20.6" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/YourWordSearchBar.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="SearchBarTextField" style="-fx-background-color: transparent;">
+               <font>
+                  <Font size="10.0" />
+               </font></TextField>
+            <Button fx:id="SearchButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#searchForYourWord" StackPane.alignment="BOTTOM_RIGHT" />
+         </children>
+      </StackPane>
+      <Button fx:id="EnterDictionaryButton" layoutX="446.0" layoutY="59.0" mnemonicParsing="false" onAction="#switchToHomePage" />
+      <Button fx:id="EnterSettingButton" layoutX="439.0" layoutY="212.0" mnemonicParsing="false" onAction="#logOut" />
+      <Button fx:id="EnterRecentWordsButton" layoutX="439.0" layoutY="240.0" mnemonicParsing="false" onAction="#switchToRecentWordsPage" />
+      <Button fx:id="AddWordButton" layoutX="294.0" layoutY="242.0" mnemonicParsing="false" onAction="#addWordShowUp" />
+      <Button fx:id="RemoveWordButton" layoutX="360.0" layoutY="242.0" mnemonicParsing="false" />
+      <Button fx:id="Game1Button" layoutX="294.0" layoutY="274.0" mnemonicParsing="false" />
+      <Button fx:id="Game2Button" layoutX="360.0" layoutY="274.0" mnemonicParsing="false" />
+      <TreeView fx:id="YourWordView" layoutX="294.0" layoutY="111.0" prefHeight="123.0" prefWidth="126.0" />
+      <StackPane layoutX="476.0" layoutY="76.0" prefHeight="18.3" prefWidth="105.0">
+         <children>
+            <ImageView fitHeight="18.3" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/DictSearchBar.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="DictSearchBarField" style="-fx-background-color: transparent;">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <Button fx:id="DictSearchButton" mnemonicParsing="false" StackPane.alignment="BOTTOM_RIGHT" />
+         </children>
+      </StackPane>
+      <AnchorPane fx:id="AddWordPane" layoutX="202.0" layoutY="115.0" prefHeight="115.0" prefWidth="216.6">
+         <children>
+            <ImageView fitHeight="115.0" fitWidth="216.6" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/AddWordPage.png" />
+               </image>
+            </ImageView>
+            <StackPane layoutX="19.0" layoutY="42.0" prefHeight="34.0" prefWidth="182.0">
+               <children>
+                  <ImageView fitHeight="34.0" fitWidth="182.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/AddWordSearchBar.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="AddWordTextField" prefHeight="34.0" prefWidth="182.0" style="-fx-background-color: transparent;" />
+                  <Button fx:id="AddWordSearchButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="16.0" StackPane.alignment="BOTTOM_RIGHT" />
+               </children></StackPane>
+            <Button fx:id="OkButton" layoutX="100.0" layoutY="80.0" mnemonicParsing="false" />
+            <Button fx:id="CancelButton" layoutX="147.0" layoutY="80.0" mnemonicParsing="false" onAction="#closeAddWordPane" />
+            <Label fx:id="WordNotFound" layoutX="19.0" layoutY="14.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
