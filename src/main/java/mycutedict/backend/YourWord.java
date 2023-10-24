@@ -26,4 +26,13 @@ public class YourWord {
             yourPackage.add(e);
         }
     }
+
+    public int indexOfYourWord(int wordTargetIndex) {
+        for (int i = 0; i< yourPackage.size(); i++) {
+            if (yourPackage.get(i) == wordTargetIndex) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
