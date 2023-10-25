@@ -28,7 +28,21 @@ public class DictionaryPageController extends BaseController implements Initiali
     private ListView<Integer> recentWordsListView;
 
     private String previousStage;
-    private boolean saved;
+    private Word word;
+    //private boolean saved;
+
+    public void setWord(Word word) {
+        this.word = word;
+        if(dictionaryManagement.isSaved(word.getWord_target()) == -1) {
+            ButtonSetUp(SaveButton, UnsavedButtonImage, 35.0 / 3.0, 35.0 / 3.0, 392, 52);
+        } else {
+            ButtonSetUp(SaveButton, SaveButtonImage, 35.0 / 3.0, 35.0 / 3.0, 392, 52);
+        }
+    }
+
+    public Word getWord() {
+        return word;
+    }
 
     public void setPreviousStage(String previousStage) {
         this.previousStage = previousStage;
@@ -42,8 +56,8 @@ public class DictionaryPageController extends BaseController implements Initiali
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateSetUp(DateLabel);
         buttonSetUp();
-        listViewSetUp(recentWordsListView, "RecentWordsPage.fxml", ScenePane);
-        saved = false;
+        listViewSetUp(recentWordsListView, dictionaryManagement.requireShowUpRecentWord(), null,"RecentWordsPage.fxml", ScenePane);
+        //saved = false;
     }
 
     private void buttonSetUp() {
@@ -52,7 +66,6 @@ public class DictionaryPageController extends BaseController implements Initiali
         ButtonSetUp(EnterRecentWordButton, EnterRecentWordButtonImage, 17, 17, 442, 57);
         ButtonSetUp(SoundButton, SoundButtonImage, 15, 15);
         ButtonSetUp(ReturnButton, ReturnButtonImage, 15, 15);
-        ButtonSetUp(SaveButton, UnsavedButtonImage, 35.0/3.0, 35.0/3.0, 392, 52);
     }
 
     public void switchToRecentWordsPage(ActionEvent event) throws IOException {
@@ -69,16 +82,16 @@ public class DictionaryPageController extends BaseController implements Initiali
 
     /* Save word to Your Words. */
     public void saveWord(ActionEvent event) throws IOException {
-        if(!saved) {
+        if(dictionaryManagement.isSaved(word.getWord_target()) == -1) {
             ButtonSetUp(SaveButton, SaveButtonImage, 35.0/3.0, 35.0/3.0, 392, 52);
-            saved = true;
+            dictionaryManagement.requireAdd(word.getWord_target());
         } else {
             ButtonSetUp(SaveButton, UnsavedButtonImage, 35.0/3.0, 35.0/3.0, 392, 52);
-            saved = false;
+            dictionaryManagement.requireRemove(word.getWord_target());
         }
     }
 
-    public void displayWord(Word word) {
+    public void displayWord() {
         WordLabel.setText(word.toString());
     }
 

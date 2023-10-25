@@ -24,6 +24,7 @@ import mycutedict.backend.Word;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
@@ -65,14 +66,16 @@ public class BaseController {
 
     protected void switchToDictionaryPage(String previousStage, ActionEvent Event, Word word) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DictionaryPage.fxml"));
+
         Parent root = fxmlLoader.load();
+
+        DictionaryPageController controller = fxmlLoader.getController();
+        controller.setWord(word);
+        controller.setPreviousStage(previousStage);
+        controller.displayWord();
 
         Stage stage = (Stage) ((Node)Event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-
-        DictionaryPageController controller = fxmlLoader.getController();
-        controller.setPreviousStage(previousStage);
-        controller.displayWord(word);
 
         scene.getStylesheets().add(getClass().getResource("/mycutedict/Styling/Styling.css").toExternalForm());
         stage.setScene(scene);
@@ -82,14 +85,16 @@ public class BaseController {
 
     protected void switchToDictionaryPage(String previousStage, Pane pane, Word word) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DictionaryPage.fxml"));
+
         Parent root = fxmlLoader.load();
+
+        DictionaryPageController controller = fxmlLoader.getController();
+        controller.setWord(word);
+        controller.setPreviousStage(previousStage);
+        controller.displayWord();
 
         Stage stage = (Stage) pane.getScene().getWindow();
         Scene scene = new Scene(root);
-
-        DictionaryPageController controller = fxmlLoader.getController();
-        controller.setPreviousStage(previousStage);
-        controller.displayWord(word);
 
         scene.getStylesheets().add(getClass().getResource("/mycutedict/Styling/Styling.css").toExternalForm());
         stage.setScene(scene);
@@ -97,8 +102,14 @@ public class BaseController {
         stage.setOnCloseRequest(event -> BaseController.logOut(stage));
     }
 
-    protected void listViewSetUp(ListView<Integer> listView, String previousStage, Pane pane) {
-        listView.getItems().addAll(dictionaryManagement.requireShowUpRecentWord());
+    protected void listViewSetUp(ListView<Integer> listView, ArrayList<Integer> arrayList, Integer integer,
+                                 String previousStage, Pane pane) {
+        listView.getItems().clear();
+        if(integer != null) {
+            listView.getItems().add(integer);
+        } else if(arrayList != null) {
+            listView.getItems().addAll(arrayList);
+        }
         listView.setCellFactory(param -> new ListCell<Integer>() {
             @Override
             protected void updateItem(Integer item, boolean empty) {
@@ -123,6 +134,19 @@ public class BaseController {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+            }
+        });
+    }
+
+    protected void dictLookUp(ListView<Integer> listView, TextField textField) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            listView.getItems().clear();
+            if(newValue.isEmpty()) {
+                listView.setVisible(false);
+            } else {
+                listView.setVisible(true);
+                ArrayList<Integer> arrayList = dictionaryManagement.requireLookUp(newValue);
+                listView.getItems().addAll(arrayList);
             }
         });
     }

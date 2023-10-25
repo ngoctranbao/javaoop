@@ -26,13 +26,17 @@ public class HomePageController extends BaseController implements Initializable 
     private AnchorPane ScenePane;
 
     @FXML
-    private ListView<Integer> recentWordsListView;
+    private ListView<Integer> recentWordsListView, LookUpView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateSetUp(DateLabel);
         buttonSetUp();
-        listViewSetUp(recentWordsListView, "HomePage.fxml", ScenePane);
+        listViewSetUp(recentWordsListView, dictionaryManagement.requireShowUpRecentWord(),
+                null,"HomePage.fxml", ScenePane);
+        listViewSetUp(LookUpView, null,
+                null,"HomePage.fxml", ScenePane);
+        dictLookUp(LookUpView, SearchBarTextField);
     }
 
     private void buttonSetUp() {

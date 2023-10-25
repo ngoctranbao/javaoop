@@ -19,7 +19,7 @@ public class RecentWordsPageController extends BaseController  implements Initia
     private Label DateLabel;
 
     @FXML
-    private ListView<Integer> recentWordsListView;
+    private ListView<Integer> recentWordsListView, LookUpView;
 
     @FXML
     private TextField SearchBarTextField;
@@ -27,14 +27,16 @@ public class RecentWordsPageController extends BaseController  implements Initia
     @FXML
     private AnchorPane ScenePane;
 
-    private Integer current_word_index;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateSetUp(DateLabel);
         buttonSetUp();
-        listViewSetUp(recentWordsListView, "RecentWordsPage.fxml", ScenePane);
+        listViewSetUp(recentWordsListView, dictionaryManagement.requireShowUpRecentWord(),
+                null, "RecentWordsPage.fxml", ScenePane);
+        listViewSetUp(LookUpView, null,
+                null,"RecentWordsPage.fxml", ScenePane);
+        dictLookUp(LookUpView, SearchBarTextField);
     }
 
     private void buttonSetUp() {

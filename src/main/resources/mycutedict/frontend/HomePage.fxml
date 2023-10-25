@@ -42,5 +42,6 @@
             <String fx:value="list-view" />
             <String fx:value="scroll-bar" />
          </styleClass></ListView>
+      <ListView fx:id="LookUpView" layoutX="294.0" layoutY="100.0" prefHeight="94.0" prefWidth="108.0" />
    </children>
 </AnchorPane>

@@ -19,12 +19,18 @@ public class DictionaryManagement extends Dictionary {
         database.close();
     }
 
-    public void requireLookUp(String data) {
-        ArrayList<Word> temp;
+    public ArrayList<Integer> requireLookUp(String data) {
+        ArrayList<Integer> temp;
         temp = this.lookUp(data);
-        for (Word word : temp) {
-            System.out.println(word);
-        }
+        return temp;
+    }
+
+    /** find out the index of word in YourWord
+     * Input: word target
+     * Return: index, if not return -1.*/
+    public int isSaved(String word_target) {
+        int temp = search(word_target);
+        return yourWord.indexOfYourWord(temp);
     }
 
     public Word requireSearch(String data) {
@@ -67,12 +73,7 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
-    public void requireShowUpYourWord() {
-        int cnt = 0;
-        while (cnt < yourWord.yourPackage.size()) {
-            int temp = yourWord.yourPackage.get(cnt);
-            System.out.println(database.dictionary.get(temp));
-            cnt++;
-        }
+    public ArrayList<Integer> requireShowUpYourWord() {
+        return yourWord.yourPackage;
     }
 }
