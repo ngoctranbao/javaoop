@@ -118,7 +118,7 @@ public class BaseController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText(dictionaryManagement.requireSearch(item).getWord_target());
+                    setText(dictionaryManagement.getDatabase().get(item).getWord_target());
                 }
             }
         });

@@ -1,6 +1,7 @@
 package mycutedict.backend;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SearchHistory {
     private final static int limit = 20;
@@ -8,9 +9,9 @@ public class SearchHistory {
 
     public void newSearch(int e) {
         while (recentWord.size() >= limit) {
-            recentWord.remove(0);
+            recentWord.remove(recentWord.size() - 1);
         }
-        recentWord.add(e);
+        recentWord.add(0,e);
     }
 
     public ArrayList<Integer> getRecentWord() {

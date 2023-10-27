@@ -98,7 +98,13 @@ public class YourWordsPageController extends BaseController implements Initializ
 
     public void addWord(ActionEvent event) throws IOException{
         String word_target = AddWordTextField.getText();
-        Word word = dictionaryManagement.requireSearch(word_target);
+        Word word = null;
+        if(word_target == "") {
+            WordNotFound.setText("Please enter a word");
+            word_target = AddWordTextField.getText();
+        } else {
+            word = dictionaryManagement.requireSearch(word_target);
+        }
 
         if(word == null) {
             WordNotFound.setText("Word not found");
@@ -110,6 +116,8 @@ public class YourWordsPageController extends BaseController implements Initializ
 
             YourWordView.getItems().add(integer);
             AddWordPane.setVisible(false);
+        } else {
+            WordNotFound.setText("Word already added");
         }
     }
 

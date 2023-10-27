@@ -41,10 +41,12 @@ public class DictionaryManagement extends Dictionary {
         searchHistory.newSearch(cnt);
         return database.dictionary.get(cnt);
     }
+
     public Word requireSearch(Integer cnt) {
         if (cnt < 0) {
             return  null;
         }
+        searchHistory.newSearch(cnt);
         return database.dictionary.get(cnt);
     }
 

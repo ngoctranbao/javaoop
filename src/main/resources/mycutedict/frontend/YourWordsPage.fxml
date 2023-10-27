@@ -76,9 +76,9 @@
                </children></StackPane>
             <Button fx:id="OkButton" layoutX="100.0" layoutY="80.0" mnemonicParsing="false" onAction="#addWord" />
             <Button fx:id="CancelButton" layoutX="147.0" layoutY="80.0" mnemonicParsing="false" onAction="#closeAddWordPane" />
-            <Label fx:id="WordNotFound" layoutX="8.0" layoutY="6.0" prefHeight="25.0" prefWidth="67.0">
+            <Label fx:id="WordNotFound" layoutX="8.0" layoutY="6.0" prefHeight="25.0" prefWidth="67.0" wrapText="true">
                <font>
-                  <Font size="10.0" />
+                  <Font size="8.0" />
                </font>
             </Label>
          </children>

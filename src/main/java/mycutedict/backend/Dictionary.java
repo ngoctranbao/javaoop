@@ -11,6 +11,10 @@ public class Dictionary {
         insert();
     }
 
+    public ArrayList<Word> getDatabase() {
+        return database.dictionary;
+    }
+
     public ArrayList<Integer> lookUp(String data) {
         return new ArrayList<>(lookUpFor(roots.get(data.charAt(0)), data.substring(1)));
     }
@@ -24,9 +28,9 @@ public class Dictionary {
             return lookUpFor(node.children.get(data.charAt(0)), data.substring(1));
         }
         else {
-            if (node.endOfWord) {
-                ans.add(node.wordIndex);
-            }
+//            if (node.endOfWord) {
+//                ans.add(node.wordIndex);
+//            }
             ans.addAll(disPlay(node));
         }
         return ans;
