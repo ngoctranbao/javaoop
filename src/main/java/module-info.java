@@ -7,6 +7,8 @@ module mycutedict.frontend {
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires freetts;
+    requires jsapi;
 
     opens mycutedict.frontend to javafx.fxml;
     exports mycutedict.frontend;

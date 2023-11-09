@@ -59,7 +59,7 @@
       </StackPane>
       <AnchorPane fx:id="AddWordPane" layoutX="202.0" layoutY="115.0" prefHeight="115.0" prefWidth="216.6">
          <children>
-            <ImageView fitHeight="115.0" fitWidth="216.6" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="popUpImageView" fitHeight="115.0" fitWidth="216.6" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/AddWordPage.png" />
                </image>

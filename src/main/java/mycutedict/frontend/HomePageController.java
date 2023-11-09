@@ -59,10 +59,11 @@ public class HomePageController extends BaseController implements Initializable 
 
     public void switchToDictionaryPage(ActionEvent event) throws IOException {
         String word_target = SearchBarTextField.getText();
-        Word word = dictionaryManagement.requireSearch(word_target);
-
-        if(word != null) {
-            switchToDictionaryPage("HomePage.fxml", event, word);
+        if(word_target != null) {
+            Word word = dictionaryManagement.requireSearch(word_target);
+            if(word != null) {
+                switchToDictionaryPage("HomePage.fxml", event, word);
+            }
         }
     }
 

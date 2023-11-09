@@ -23,6 +23,12 @@ public class Main extends Application {
         stage.setOnCloseRequest(event -> BaseController.logOut(stage));
     }
 
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        DictionaryPageController.cleanup();
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

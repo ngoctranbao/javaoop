@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import mycutedict.backend.DictionaryManagement;
 import mycutedict.backend.Word;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
-public class BaseController {
+public abstract class BaseController {
     protected static final String SettingButtonImagePath = "/mycutedict/Image/SettingButton.png";
     protected static final String YourWordButtonImagePath = "/mycutedict/Image/YourWordButton.png";
     protected static final String EnterRecentWordButtonImage = "/mycutedict/Image/EnterButton.png";
@@ -47,9 +48,6 @@ public class BaseController {
     protected static final String CancelButtonImage = "/mycutedict/Image/CancelButton.png";
 
     protected static DictionaryManagement dictionaryManagement = new DictionaryManagement();
-
-    public BaseController() {
-    }
 
     protected void switchToOtherPage(String fxmlFile, ActionEvent Event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
