@@ -20,7 +20,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-        stage.setOnCloseRequest(event -> BaseController.logOut(stage));
+        stage.setOnCloseRequest(event -> Common.logOut(stage));
     }
 
     @Override

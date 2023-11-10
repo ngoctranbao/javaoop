@@ -17,37 +17,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import mycutedict.backend.DictionaryManagement;
 import mycutedict.backend.Word;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
 public abstract class BaseController {
-    protected static final String SettingButtonImagePath = "/mycutedict/Image/SettingButton.png";
-    protected static final String YourWordButtonImagePath = "/mycutedict/Image/YourWordButton.png";
-    protected static final String EnterRecentWordButtonImage = "/mycutedict/Image/EnterButton.png";
-    protected static final String EnterDictionaryButtonImage = "/mycutedict/Image/EnterDictionary.png";
-    protected static final String SearchIconButtonImage = "/mycutedict/Image/searchIcon.png";
-    protected static final String SoundButtonImage = "/mycutedict/Image/SoundButton.png";
-    protected static final String RecentWordButtonImage = "/mycutedict/Image/RecentWordButton.png";
-    protected static final String AddWordButtonImage = "/mycutedict/Image/AddWordButton.png";
-    protected static final String RemoveWordButtonImage = "/mycutedict/Image/RemoveWordButton.png";
-    protected static final String Game1ButtonImage = "/mycutedict/Image/Game1Button.png";
-    protected static final String Game2ButtonImage = "/mycutedict/Image/Game2Button.png";
-    protected static final String ReturnButtonImage = "/mycutedict/Image/ReturnButton.png";
-    protected static final String SaveButtonImage = "/mycutedict/Image/savedIcon.png";
-    protected static final String UnsavedButtonImage = "/mycutedict/Image/unsavedIcon.png";
-    protected static final String OKButtonImage = "/mycutedict/Image/OkButton.png";
-    protected static final String CancelButtonImage = "/mycutedict/Image/CancelButton.png";
-
-    protected static DictionaryManagement dictionaryManagement = new DictionaryManagement();
 
     protected void switchToOtherPage(String fxmlFile, ActionEvent Event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
@@ -59,7 +38,35 @@ public abstract class BaseController {
         scene.getStylesheets().add(getClass().getResource("/mycutedict/Styling/Styling.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
-        stage.setOnCloseRequest(event -> BaseController.logOut(stage));
+        stage.setOnCloseRequest(event -> Common.logOut(stage));
+    }
+
+    protected void switchToOtherPage(String fxmlFile, ActionEvent Event, Pane pane,
+                                     String previousStage, Word word) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = fxmlLoader.load();
+
+        if(fxmlFile.equals("DictionaryPage.fxml")) {
+            DictionaryPageController controller = fxmlLoader.getController();
+            controller.setWord(word);
+            controller.setPreviousStage(previousStage);
+            controller.displayWord();
+        }
+
+        Stage stage;
+
+        if(Event == null) {
+            stage = (Stage) pane.getScene().getWindow();
+        } else {
+            stage = (Stage) ((Node)Event.getSource()).getScene().getWindow();
+        }
+
+        Scene scene = new Scene(root);
+
+        scene.getStylesheets().add(getClass().getResource("/mycutedict/Styling/Styling.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+        stage.setOnCloseRequest(event -> Common.logOut(stage));
     }
 
     protected void switchToDictionaryPage(String previousStage, ActionEvent Event, Word word) throws IOException {
@@ -78,7 +85,7 @@ public abstract class BaseController {
         scene.getStylesheets().add(getClass().getResource("/mycutedict/Styling/Styling.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
-        stage.setOnCloseRequest(event -> BaseController.logOut(stage));
+        stage.setOnCloseRequest(event -> Common.logOut(stage));
     }
 
     protected void switchToDictionaryPage(String previousStage, Pane pane, Word word) throws IOException {
@@ -97,7 +104,7 @@ public abstract class BaseController {
         scene.getStylesheets().add(getClass().getResource("/mycutedict/Styling/Styling.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
-        stage.setOnCloseRequest(event -> BaseController.logOut(stage));
+        stage.setOnCloseRequest(event -> Common.logOut(stage));
     }
 
     protected void listViewSetUp(ListView<Integer> listView, ArrayList<Integer> arrayList, Integer integer,
@@ -116,7 +123,7 @@ public abstract class BaseController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText(dictionaryManagement.getDatabase().get(item).getWord_target());
+                    setText(Common.dictionaryManagement.getDatabase().get(item).getWord_target());
                 }
             }
         });
@@ -126,7 +133,7 @@ public abstract class BaseController {
             @Override
             public void changed(ObservableValue<? extends Integer> arg0, Integer arg1, Integer arg2) {
                 int current_word_index = listView.getSelectionModel().getSelectedItem();
-                Word word = dictionaryManagement.requireSearch(current_word_index);
+                Word word = Common.dictionaryManagement.requireSearch(current_word_index);
                 try {
                     switchToDictionaryPage(previousStage, pane, word);
                 } catch (IOException e) {
@@ -143,7 +150,7 @@ public abstract class BaseController {
                 listView.setVisible(false);
             } else {
                 listView.setVisible(true);
-                ArrayList<Integer> arrayList = dictionaryManagement.requireLookUp(newValue);
+                ArrayList<Integer> arrayList = Common.dictionaryManagement.requireLookUp(newValue);
                 listView.getItems().addAll(arrayList);
             }
         });
@@ -197,27 +204,5 @@ public abstract class BaseController {
         label.setText(currentDateTime);
     }
 
-    protected void logOut(ActionEvent event, AnchorPane pane) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exit");
-        alert.setHeaderText("You are about to exit the program!");
-        alert.setContentText("Do you really wanna exit?");
-
-        if(alert.showAndWait().get() == ButtonType.OK) {
-            dictionaryManagement.requireExit();
-            Stage stage = (Stage) pane.getScene().getWindow();
-            stage.close();
-        }
-    }
-    public static void logOut(Stage stage) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exit");
-        alert.setHeaderText("You are about to exit the program!");
-        alert.setContentText("Do you really wanna exit?");
-
-        if(alert.showAndWait().get() == ButtonType.OK) {
-            dictionaryManagement.requireExit();
-            stage.close();
-        }
-    }
+    protected abstract void logOut(ActionEvent event) throws IOException;
 }

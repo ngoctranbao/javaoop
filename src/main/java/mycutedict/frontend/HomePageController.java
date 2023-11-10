@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import mycutedict.backend.Word;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class HomePageController extends BaseController implements Initializable 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateSetUp(DateLabel);
         buttonSetUp();
-        listViewSetUp(recentWordsListView, dictionaryManagement.requireShowUpRecentWord(),
+        listViewSetUp(recentWordsListView, Common.dictionaryManagement.requireShowUpRecentWord(),
                 null,"HomePage.fxml", ScenePane);
         listViewSetUp(LookUpView, null,
                 null,"HomePage.fxml", ScenePane);
@@ -40,17 +41,17 @@ public class HomePageController extends BaseController implements Initializable 
     }
 
     private void buttonSetUp() {
-        ButtonSetUp(SettingButton, SettingButtonImagePath, 142.6, 24, 432, 210);
+        ButtonSetUp(SettingButton, Common.SettingButtonImage, 142.6, 24, 432, 210);
 
-        ButtonSetUp(YourWordButton, YourWordButtonImagePath, 142.6, 62.6, 432, 240);
+        ButtonSetUp(YourWordButton, Common.YourWordButtonImage, 142.6, 62.6, 432, 240);
 
-        ButtonSetUp(EnterRecentWordButton, EnterRecentWordButtonImage, 17, 17, 442, 57);
+        ButtonSetUp(EnterRecentWordButton, Common.EnterRecentWordButtonImage, 17, 17, 442, 57);
 
-        ButtonSetUp(SearchIconButton, SearchIconButtonImage, 38.0/3.0, 38.0/3.0);
+        ButtonSetUp(SearchIconButton, Common.SearchIconButtonImage, 38.0/3.0, 38.0/3.0);
     }
 
     public void switchToRecentWordsPage(ActionEvent event) throws IOException {
-        switchToOtherPage("RecentWordsPage.fxml", event);
+        switchToOtherPage("RecentWordsPage.fxml", event, null, null, null);
     }
 
     public void switchToYourWordsPage(ActionEvent event) throws IOException {
@@ -60,15 +61,16 @@ public class HomePageController extends BaseController implements Initializable 
     public void switchToDictionaryPage(ActionEvent event) throws IOException {
         String word_target = SearchBarTextField.getText();
         if(word_target != null) {
-            Word word = dictionaryManagement.requireSearch(word_target);
+            Word word = Common.dictionaryManagement.requireSearch(word_target);
             if(word != null) {
                 switchToDictionaryPage("HomePage.fxml", event, word);
             }
         }
     }
 
-    public void logOut(ActionEvent event) throws IOException {
-        logOut(event, ScenePane);
+    public void logOut(ActionEvent event) throws IOException{
+        Stage stage = (Stage) ScenePane.getScene().getWindow();
+        Common.logOut(stage);
     }
 
 }

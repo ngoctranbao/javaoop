@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class SearchHistory {
-    private final static int limit = 20;
+    private final static int limit = 50;
     public ArrayList<Integer> recentWord = new ArrayList<>();
 
     public void newSearch(int e) {
