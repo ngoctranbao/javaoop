@@ -31,8 +31,25 @@ public class RecentWordsPageController extends BaseController  implements Initia
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dateSetUp(DateLabel);
-        buttonSetUp();
+        Common.dateSetUp(DateLabel);
+        buttonsSetUp();
+        listViewsSetUp();
+    }
+
+    /**
+     * Set up all the buttons in a page.
+     */
+    public void buttonsSetUp() {
+        ButtonSetUp(SettingButton, Common.SettingButtonImage, 142.6, 24);
+        ButtonSetUp(YourWordButton, Common.YourWordButtonImage, 142.6, 62.6);
+        ButtonSetUp(EnterButton, Common.EnterDictionaryButtonImage, 17, 17);
+        ButtonSetUp(DictSearchButton, Common.SearchIconButtonImage, 38.0/3.0, 38.0/3.0);
+    }
+
+    /**
+     * Set up all the list views needed in a page.
+     */
+    public void listViewsSetUp() {
         listViewSetUp(recentWordsListView, Common.dictionaryManagement.requireShowUpRecentWord(),
                 null, "RecentWordsPage.fxml", ScenePane);
         listViewSetUp(LookUpView, null,
@@ -40,30 +57,29 @@ public class RecentWordsPageController extends BaseController  implements Initia
         dictLookUp(LookUpView, SearchBarTextField);
     }
 
-    private void buttonSetUp() {
-        ButtonSetUp(SettingButton, Common.SettingButtonImage, 142.6, 24);
-        ButtonSetUp(YourWordButton, Common.YourWordButtonImage, 142.6, 62.6);
-        ButtonSetUp(EnterButton, Common.EnterDictionaryButtonImage, 17, 17);
-        ButtonSetUp(DictSearchButton, Common.SearchIconButtonImage, 38.0/3.0, 38.0/3.0);
-    }
-
+    // Switch to Home Page
     public void switchToHomePage(ActionEvent event) throws IOException {
         switchToOtherPage("HomePage.fxml", event);
     }
 
+    // Switch to Your Words (Saved Words Page)
     public void switchToYourWordsPage(ActionEvent event) throws IOException {
         switchToOtherPage("YourWordsPage.fxml", event);
     }
 
+    // Switch to Display the specific word page - meaning, pronunciation, ...
     public void switchToDictionaryPage(ActionEvent event) throws IOException {
         String word_target = SearchBarTextField.getText();
         Word word = Common.dictionaryManagement.requireSearch(word_target);
 
         if(word != null) {
-            switchToDictionaryPage("RecentWordsPage.fxml", event, word);
+            switchToDictionaryPage("RecentWordsPage.fxml", event, null, word);
         }
     }
 
+    /**
+     * Exit program.
+     */
     public void logOut(ActionEvent event) throws IOException{
         Stage stage = (Stage) ScenePane.getScene().getWindow();
         Common.logOut(stage);

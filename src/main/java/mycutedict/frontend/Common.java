@@ -32,6 +32,8 @@ public abstract class Common {
     public static final String UnsavedButtonImage = "/mycutedict/Image/unsavedIcon.png";
     public static final String OKButtonImage = "/mycutedict/Image/OkButton.png";
     public static final String CancelButtonImage = "/mycutedict/Image/CancelButton.png";
+    public static final String RemoveWordPaneImage = "/mycutedict/Image/RemoveWordPage.png";
+    public static final String AddWordPaneImage = "/mycutedict/Image/AddWordPage.png";
 
     public static final DictionaryManagement dictionaryManagement = new DictionaryManagement();
 

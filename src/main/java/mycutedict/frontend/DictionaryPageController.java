@@ -36,31 +36,21 @@ public class DictionaryPageController extends BaseController implements Initiali
 
     private String previousStage;
     private Word word;
-    //private boolean saved;
     private static Synthesizer synthesizer;
     private static final String VOICES_KEY = "freetts.voices";
     private static final String VOICES_VALUE = "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory";
     private static final String CENTRAL_DATA = "com.sun.speech.freetts.jsapi.FreeTTSEngineCentral";
 
-    public DictionaryPageController() {
-        try {
-            if(synthesizer == null) {
-                System.setProperty(VOICES_KEY, VOICES_VALUE);
-                Central.registerEngineCentral(CENTRAL_DATA);
-                SynthesizerModeDesc desc = new SynthesizerModeDesc(
-                        null,
-                        "general",
-                        Locale.US,
-                        null,
-                        null);
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Common.dateSetUp(DateLabel);
+        buttonsSetUp();
+        listViewsSetUp();
+    }
 
-                synthesizer = Central.createSynthesizer(desc);
-                synthesizer.allocate();
-                synthesizer.resume();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    // Constructor
+    public DictionaryPageController() {
+        initializeSynthesizer();
     }
 
     public void setWord(Word word) {
@@ -84,15 +74,34 @@ public class DictionaryPageController extends BaseController implements Initiali
         return previousStage;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        dateSetUp(DateLabel);
-        buttonSetUp();
-        listViewSetUp(recentWordsListView, Common.dictionaryManagement.requireShowUpRecentWord(),
-                null,"RecentWordsPage.fxml", ScenePane);
+    /**
+     * Initialize the synthesizer - allocate...
+     */
+    private void initializeSynthesizer() {
+        try {
+            if(synthesizer == null) {
+                System.setProperty(VOICES_KEY, VOICES_VALUE);
+                Central.registerEngineCentral(CENTRAL_DATA);
+                SynthesizerModeDesc desc = new SynthesizerModeDesc(
+                        null,
+                        "general",
+                        Locale.US,
+                        null,
+                        null);
+
+                synthesizer = Central.createSynthesizer(desc);
+                synthesizer.allocate();
+                synthesizer.resume();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    private void buttonSetUp() {
+    /**
+     * Set up all the buttons in a page.
+     */
+    public void buttonsSetUp() {
         ButtonSetUp(SettingButton, Common.SettingButtonImage,
               142.6, 24, 432, 210);
         ButtonSetUp(YourWordButton, Common.YourWordButtonImage,
@@ -105,14 +114,27 @@ public class DictionaryPageController extends BaseController implements Initiali
                 15, 15);
     }
 
+    /**
+     * Set up all the list views needed in a page.
+     */
+    public void listViewsSetUp() {
+        listViewSetUp(recentWordsListView, Common.dictionaryManagement.requireShowUpRecentWord(),
+                null,"RecentWordsPage.fxml", ScenePane);
+    }
+
+    // Switch to Recent Words (Search History Page)
     public void switchToRecentWordsPage(ActionEvent event) throws IOException {
         switchToOtherPage("RecentWordsPage.fxml", event);
     }
 
+    // Switch to Your Words (Saved Words Page)
     public void switchToYourWordsPage(ActionEvent event) throws IOException {
         switchToOtherPage("YourWordsPage.fxml", event);
     }
 
+    /**
+     * Return to previous page.
+     */
     public void returnToPreviousPage(ActionEvent event) throws IOException {
         switchToOtherPage(getPreviousStage(), event);
     }
@@ -128,10 +150,16 @@ public class DictionaryPageController extends BaseController implements Initiali
         }
     }
 
+    /**
+     * Display word_target, meaning, etc.
+     */
     public void displayWord() {
         WordLabel.setText(word.toString());
     }
 
+    /**
+     * Pronounce word - text to speech.
+     */
     public void pronounceWord(ActionEvent event) {
         try {
             synthesizer.speakPlainText(word.getWord_target(), null);
@@ -140,6 +168,10 @@ public class DictionaryPageController extends BaseController implements Initiali
             e.printStackTrace();
         }
     }
+
+    /**
+     * Deallocate the synthesizer when the program stop
+     */
     public static void cleanup() {
         try {
             if (synthesizer != null) {
@@ -150,6 +182,9 @@ public class DictionaryPageController extends BaseController implements Initiali
         }
     }
 
+    /**
+     * Exit program.
+     */
     public void logOut(ActionEvent event) throws IOException{
         Stage stage = (Stage) ScenePane.getScene().getWindow();
         Common.logOut(stage);
