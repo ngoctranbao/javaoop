@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ScenePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mycutedict.frontend.HomePageController">
+   <children>
+      <ImageView fitHeight="360.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../Image/HomePage.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="SettingButton" layoutX="432.0" layoutY="210.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#logOut" />
+      <Button fx:id="YourWordButton" layoutX="432.0" layoutY="240.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToYourWordsPage" />
+      <Button fx:id="EnterRecentWordButton" layoutX="442.0" layoutY="57.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToRecentWordsPage" />
+      <StackPane layoutX="292.0" layoutY="78.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="20.3" prefWidth="126.0">
+         <children>
+            <ImageView fitHeight="20.3" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/DictionarySearchBar.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="SearchBarTextField" style="-fx-background-color: transparent;">
+               <font>
+                  <Font size="10.0" />
+               </font></TextField>
+            <Button fx:id="SearchIconButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchToDictionaryPage" prefHeight="25.0" prefWidth="12.0" StackPane.alignment="BOTTOM_RIGHT" />
+         </children>
+      </StackPane>
+      <Label fx:id="DateLabel" layoutX="206.0" layoutY="116.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textFill="#eb6ab7" />
+      <ListView fx:id="recentWordsListView" layoutX="464.0" layoutY="72.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="116.0" prefWidth="126.0" stylesheets="@../Styling/Styling.css">
+         <styleClass>
+            <String fx:value="list-cell" />
+            <String fx:value="list-view" />
+            <String fx:value="scroll-bar" />
+         </styleClass></ListView>
+      <ListView fx:id="LookUpView" layoutX="294.0" layoutY="100.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="94.0" prefWidth="108.0" />
+   </children>
+</AnchorPane>
