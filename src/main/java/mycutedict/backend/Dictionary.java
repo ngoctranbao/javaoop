@@ -11,12 +11,12 @@ public class Dictionary {
         insert();
     }
 
-    public ArrayList<Word> lookUp(String data) {
+    public ArrayList<Integer> lookUp(String data) {
         return new ArrayList<>(lookUpFor(roots.get(data.charAt(0)), data.substring(1)));
     }
 
-    private ArrayList<Word> lookUpFor(Node node, String data) {
-        ArrayList<Word> ans = new ArrayList<>();
+    private ArrayList<Integer> lookUpFor(Node node, String data) {
+        ArrayList<Integer> ans = new ArrayList<>();
         if (node == null) {
             return ans;
         }
@@ -25,20 +25,20 @@ public class Dictionary {
         }
         else {
             if (node.endOfWord) {
-                ans.add(database.dictionary.get(node.wordIndex));
+                ans.add(node.wordIndex);
             }
             ans.addAll(disPlay(node));
         }
         return ans;
     }
 
-    private ArrayList<Word> disPlay(Node node) {
-        ArrayList<Word> ans = new ArrayList<>();
+    private ArrayList<Integer> disPlay(Node node) {
+        ArrayList<Integer> ans = new ArrayList<>();
         if (node == null) {
             return null;
         }
         if (node.endOfWord) {
-            ans.add(database.dictionary.get(node.wordIndex));
+            ans.add(node.wordIndex);
         }
         for (Character key: node.children.keySet()) {
             ans.addAll(disPlay(node.children.get(key)));

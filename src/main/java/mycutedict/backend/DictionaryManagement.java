@@ -20,10 +20,10 @@ public class DictionaryManagement extends Dictionary {
     }
 
     public void requireLookUp(String data) {
-        ArrayList<Word> temp;
+        ArrayList<Integer> temp;
         temp = this.lookUp(data);
-        for (Word word : temp) {
-            System.out.println(word);
+        for (Integer integer : temp) {
+            System.out.println(database.dictionary.get(integer));
         }
     }
 
