@@ -2,8 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,17 +29,19 @@
                <font>
                   <Font size="10.0" />
                </font></TextField>
-            <Button fx:id="SearchButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#searchForYourWord" StackPane.alignment="BOTTOM_RIGHT" />
+            <Button fx:id="SearchButton" alignment="CENTER_RIGHT" mnemonicParsing="false" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
       <Button fx:id="EnterDictionaryButton" layoutX="446.0" layoutY="59.0" mnemonicParsing="false" onAction="#switchToHomePage" />
       <Button fx:id="EnterSettingButton" layoutX="439.0" layoutY="212.0" mnemonicParsing="false" onAction="#logOut" />
       <Button fx:id="EnterRecentWordsButton" layoutX="439.0" layoutY="240.0" mnemonicParsing="false" onAction="#switchToRecentWordsPage" />
       <Button fx:id="AddWordButton" layoutX="294.0" layoutY="242.0" mnemonicParsing="false" onAction="#addWordShowUp" />
-      <Button fx:id="RemoveWordButton" layoutX="360.0" layoutY="242.0" mnemonicParsing="false" />
+      <Button fx:id="RemoveWordButton" layoutX="360.0" layoutY="242.0" mnemonicParsing="false" onAction="#removeWordShowUp" />
       <Button fx:id="Game1Button" layoutX="294.0" layoutY="274.0" mnemonicParsing="false" />
       <Button fx:id="Game2Button" layoutX="360.0" layoutY="274.0" mnemonicParsing="false" />
-      <TreeView fx:id="YourWordView" layoutX="294.0" layoutY="111.0" prefHeight="123.0" prefWidth="126.0" />
+      <ListView fx:id="YourWordView" layoutX="297.0" layoutY="106.0" prefHeight="123.0" prefWidth="123.0" />
+      <ListView fx:id="SearchWordView" layoutX="297.0" layoutY="106.0" prefHeight="123.0" prefWidth="123.0" />
+      <ListView fx:id="LookUpView" layoutX="477.0" layoutY="98.0" prefHeight="84.0" prefWidth="89.0" />
       <StackPane layoutX="476.0" layoutY="76.0" prefHeight="18.3" prefWidth="105.0">
          <children>
             <ImageView fitHeight="18.3" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
@@ -52,12 +54,12 @@
                   <Font size="10.0" />
                </font>
             </TextField>
-            <Button fx:id="DictSearchButton" mnemonicParsing="false" StackPane.alignment="BOTTOM_RIGHT" />
+            <Button fx:id="DictSearchButton" mnemonicParsing="false" onAction="#switchToDictionaryPage" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <AnchorPane fx:id="AddWordPane" layoutX="202.0" layoutY="115.0" prefHeight="115.0" prefWidth="216.6">
+      <AnchorPane fx:id="ManageWordPane" layoutX="202.0" layoutY="115.0" prefHeight="115.0" prefWidth="216.6">
          <children>
-            <ImageView fitHeight="115.0" fitWidth="216.6" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="popUpImageView" fitHeight="115.0" fitWidth="216.6" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/AddWordPage.png" />
                </image>
@@ -69,14 +71,14 @@
                         <Image url="@../Image/AddWordSearchBar.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="AddWordTextField" prefHeight="34.0" prefWidth="182.0" style="-fx-background-color: transparent;" />
-                  <Button fx:id="AddWordSearchButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="16.0" StackPane.alignment="BOTTOM_RIGHT" />
+                  <TextField fx:id="ManageWordTextField" prefHeight="34.0" prefWidth="182.0" style="-fx-background-color: transparent;" />
+                  <Button fx:id="AddWordSearchButton" mnemonicParsing="false" onAction="#searchFromManageWord" prefHeight="35.0" prefWidth="16.0" StackPane.alignment="BOTTOM_RIGHT" />
                </children></StackPane>
-            <Button fx:id="OkButton" layoutX="100.0" layoutY="80.0" mnemonicParsing="false" />
-            <Button fx:id="CancelButton" layoutX="147.0" layoutY="80.0" mnemonicParsing="false" onAction="#closeAddWordPane" />
-            <Label fx:id="WordNotFound" layoutX="19.0" layoutY="14.0">
+            <Button fx:id="OkButton" layoutX="100.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleOkButton" />
+            <Button fx:id="CancelButton" layoutX="147.0" layoutY="80.0" mnemonicParsing="false" onAction="#closeManageWordPane" />
+            <Label fx:id="WordNotFound" layoutX="8.0" layoutY="6.0" prefHeight="25.0" prefWidth="67.0" wrapText="true">
                <font>
-                  <Font size="10.0" />
+                  <Font size="8.0" />
                </font>
             </Label>
          </children>

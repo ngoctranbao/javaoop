@@ -37,5 +37,6 @@
          </children>
       </StackPane>
       <ListView fx:id="recentWordsListView" layoutX="297.0" layoutY="80.0" prefHeight="213.0" prefWidth="123.0" />
+      <ListView fx:id="LookUpView" layoutX="477.0" layoutY="98.0" prefHeight="84.0" prefWidth="89.0" />
    </children>
 </AnchorPane>

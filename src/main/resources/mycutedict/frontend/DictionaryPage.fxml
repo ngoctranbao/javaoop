@@ -26,7 +26,7 @@
       <Button fx:id="YourWordButton" layoutX="438.0" layoutY="250.0" mnemonicParsing="false" onAction="#switchToYourWordsPage" />
       <Label fx:id="DateLabel" layoutX="212.0" layoutY="116.0" />
       <Button fx:id="ReturnButton" layoutX="287.0" layoutY="54.0" mnemonicParsing="false" onAction="#returnToPreviousPage" />
-      <Button fx:id="SoundButton" layoutX="379.0" layoutY="85.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="19.0" />
+      <Button fx:id="SoundButton" layoutX="379.0" layoutY="85.0" mnemonicParsing="false" onAction="#pronounceWord" prefHeight="25.0" prefWidth="19.0" />
       <Button fx:id="SaveButton" layoutX="403.0" layoutY="54.0" mnemonicParsing="false" onAction="#saveWord" />
       <ListView fx:id="recentWordsListView" layoutX="464.0" layoutY="72.0" prefHeight="116.0" prefWidth="126.0" stylesheets="@../Styling/Styling.css">
          <styleClass>
