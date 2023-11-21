@@ -9,6 +9,7 @@ module mycutedict.frontend {
     requires java.sql;
     requires freetts;
     requires jsapi;
+    requires javafx.media;
 
     opens mycutedict.frontend to javafx.fxml;
     exports mycutedict.frontend;

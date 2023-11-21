@@ -56,9 +56,9 @@ public class DictionaryPageController extends BaseController implements Initiali
     public void setWord(Word word) {
         this.word = word;
         if(Common.dictionaryManagement.isSaved(word.getWord_target()) == -1) {
-            ButtonSetUp(SaveButton, Common.UnsavedButtonImage, 35.0 / 3.0, 35.0 / 3.0, 392, 52);
+            ButtonSetUp(SaveButton, Common.UnsavedButtonImage, 35.0/2, 35.0/2, 588, 83);
         } else {
-            ButtonSetUp(SaveButton, Common.SaveButtonImage, 35.0 / 3.0, 35.0 / 3.0, 392, 52);
+            ButtonSetUp(SaveButton, Common.SaveButtonImage, 35.0/2, 35.0/2, 588, 83);
         }
     }
 
@@ -102,16 +102,16 @@ public class DictionaryPageController extends BaseController implements Initiali
      * Set up all the buttons in a page.
      */
     public void buttonsSetUp() {
-        ButtonSetUp(SettingButton, Common.SettingButtonImage,
-              142.6, 24, 432, 210);
-        ButtonSetUp(YourWordButton, Common.YourWordButtonImage,
-                142.6, 62.6, 432, 240);
-        ButtonSetUp(EnterRecentWordButton, Common.EnterRecentWordButtonImage,
-                17, 17, 442, 57);
+        ButtonSetUp(SettingButton, Common.SettingButtonImage, 142.6 * 1.5, 24 * 1.5,
+                651, 210 * 1.5);
+        ButtonSetUp(YourWordButton, Common.YourWordButtonImage, 142.6 * 1.5, 62.6 * 1.5,
+                651, 240 * 1.5);
+        ButtonSetUp(EnterRecentWordButton, Common.EnterRecentWordButtonImage, 17 * 1.5, 17 * 1.5,
+                442 * 1.5, 57 * 1.5);
         ButtonSetUp(SoundButton, Common.SoundButtonImage,
-                15, 15);
+                22.5, 22.5);
         ButtonSetUp(ReturnButton, Common.ReturnButtonImage,
-                15, 15);
+                22.5, 22.5);
     }
 
     /**
@@ -142,10 +142,10 @@ public class DictionaryPageController extends BaseController implements Initiali
     /** Save word to Your Words. */
     public void saveWord(ActionEvent event) {
         if(Common.dictionaryManagement.isSaved(word.getWord_target()) == -1) {
-            ButtonSetUp(SaveButton, Common.SaveButtonImage, 35.0/3.0, 35.0/3.0, 392, 52);
+            ButtonSetUp(SaveButton, Common.SaveButtonImage, 35.0/2, 35.0/2, 588, 78);
             Common.dictionaryManagement.requireAdd(word.getWord_target());
         } else {
-            ButtonSetUp(SaveButton, Common.UnsavedButtonImage, 35.0/3.0, 35.0/3.0, 392, 52);
+            ButtonSetUp(SaveButton, Common.UnsavedButtonImage, 35.0/2, 35.0/2, 588, 78);
             Common.dictionaryManagement.requireRemove(word.getWord_target());
         }
     }

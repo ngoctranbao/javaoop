@@ -40,10 +40,14 @@ public class RecentWordsPageController extends BaseController  implements Initia
      * Set up all the buttons in a page.
      */
     public void buttonsSetUp() {
-        ButtonSetUp(SettingButton, Common.SettingButtonImage, 142.6, 24);
-        ButtonSetUp(YourWordButton, Common.YourWordButtonImage, 142.6, 62.6);
-        ButtonSetUp(EnterButton, Common.EnterDictionaryButtonImage, 17, 17);
-        ButtonSetUp(DictSearchButton, Common.SearchIconButtonImage, 38.0/3.0, 38.0/3.0);
+        ButtonSetUp(SettingButton, Common.SettingButtonImage, 142.6 * 1.5, 24 * 1.5,
+                651, 210 * 1.5);
+        ButtonSetUp(YourWordButton, Common.YourWordButtonImage, 142.6 * 1.5, 62.6 * 1.5,
+                651, 240 * 1.5);
+        ButtonSetUp(EnterButton, Common.EnterDictionaryButtonImage, 17 * 1.5, 17 * 1.5,
+                442 * 1.5, 57 * 1.5);
+
+        ButtonSetUp(DictSearchButton, Common.SearchIconButtonImage, 38.0 * 1.5/3, 38.0 * 1.5/3);
     }
 
     /**

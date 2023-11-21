@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import mycutedict.backend.Word;
 
@@ -155,5 +158,34 @@ public abstract class BaseController {
         ButtonSetUp(button, filePath, width, height);
         button.setLayoutX(x);
         button.setLayoutY(y);
+    }
+
+    protected AnswerButton ButtonSetUp(AnswerButton answerButton, Button button, String filePath, double width,
+                               double height, double x, double y, String text) {
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(filePath)));
+        ImageView imageView = new ImageView(image);
+
+        imageView.setFitWidth(width);
+        imageView.setFitHeight(height);
+
+        Label label = new Label(text);
+        label.setFont(Font.font("Cambria Math", 10));
+        label.setWrapText(true);
+        label.setPadding(new Insets(0, 10, 0, 10));
+
+        // Create a StackPane to layer the image and text
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(imageView, label);
+
+        button.setGraphic(stackPane);
+        button.setPrefWidth(width);
+        button.setPrefHeight(height);
+        button.setLayoutX(x);
+        button.setLayoutY(y);
+
+        answerButton.setButton(button);
+        answerButton.setText(text);
+
+        return answerButton;
     }
 }

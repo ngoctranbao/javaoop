@@ -58,31 +58,31 @@ public class YourWordsPageController extends BaseController implements Initializ
      * Set up all the buttons in a page.
      */
     public void buttonsSetUp() {
-        ButtonSetUp(EnterSettingButton, Common.SettingButtonImage,
-                142.6, 24, 432, 210);
+        ButtonSetUp(EnterSettingButton, Common.SettingButtonImage, 142.6 * 1.5,
+                24 * 1.5, 651, 210 * 1.5);
         ButtonSetUp(EnterDictionaryButton, Common.EnterDictionaryButtonImage,
-                17, 17, 442, 57);
+                17 * 1.5, 17 * 1.5, 442 * 1.5, 57 * 1.5);
         ButtonSetUp(SearchButton, Common.SearchIconButtonImage,
-                38.0/3.0, 38.0/3.0);
+                38.0/2.0, 38.0/2.0);
         ButtonSetUp(EnterRecentWordsButton, Common.RecentWordButtonImage,
-                142.6, 62.6, 432, 240);
+                142.6 * 1.5, 62.6 * 1.5, 651, 240 * 1.5);
 
         ButtonSetUp(AddWordButton, Common.AddWordButtonImage,
-                196.0/3.0, 21, 280, 243);
+                196.0/2, 21 * 1.5, 425, 373);
         ButtonSetUp(RemoveWordButton, Common.RemoveWordButtonImage,
-                196.0/3.0, 21, 348, 243);
+                196.0/2, 21 * 1.5, 527, 373);
         ButtonSetUp(Game1Button, Common.Game1ButtonImage,
-                196.0/3.0, 21, 280, 270);
+                196.0/2, 21 * 1.5, 425, 413);
         ButtonSetUp(Game2Button, Common.Game2ButtonImage,
-                196.0/3.0, 21, 348, 270);
+                196.0/2, 21 * 1.5, 527, 413);
         ButtonSetUp(DictSearchButton, Common.SearchIconButtonImage,
-                38.0/3.0, 38.0/3.0);
+                38.0/2, 38.0/2);
         ButtonSetUp(OkButton, Common.OKButtonImage,
-                44, 17);
+                44 * 1.5, 17 * 1.5);
         ButtonSetUp(CancelButton, Common.CancelButtonImage,
-                44, 17);
+                44 * 1.5, 17 * 1.5);
         ButtonSetUp(AddWordSearchButton, Common.SearchIconButtonImage,
-                21, 21);
+                21 * 1.5, 21 * 1.5);
     }
 
     /**
@@ -93,7 +93,6 @@ public class YourWordsPageController extends BaseController implements Initializ
                 "YourWordsPage.fxml", ScenePane);
         listViewSetUp(SearchWordView, null, null,
                 "YourWordsPage.fxml", ScenePane);
-
         listViewSetUp(LookUpView, null,
                 null,"YourWordsPage.fxml", ScenePane);
         dictLookUp(LookUpView, DictSearchBarField);
@@ -117,6 +116,10 @@ public class YourWordsPageController extends BaseController implements Initializ
         if(word != null) {
             switchToDictionaryPage("YourWordsPage.fxml", event, null, word);
         }
+    }
+
+    public void switchToGamePage(ActionEvent event) throws IOException {
+        switchToOtherPage("GamePage.fxml", event);
     }
 
     /**

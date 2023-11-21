@@ -34,6 +34,8 @@ public abstract class Common {
     public static final String CancelButtonImage = "/mycutedict/Image/CancelButton.png";
     public static final String RemoveWordPaneImage = "/mycutedict/Image/RemoveWordPage.png";
     public static final String AddWordPaneImage = "/mycutedict/Image/AddWordPage.png";
+    public static final String AnswerBoxImage = "/mycutedict/Image/AnswerBox.png";
+    public static final String RestartButtonImage = "/mycutedict/Image/RestartButton.png";
 
     public static final DictionaryManagement dictionaryManagement = new DictionaryManagement();
 
@@ -51,11 +53,11 @@ public abstract class Common {
         SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentDateTime = dateTimeFormat.format(new Date());
 
-        label.setPrefWidth(117);
-        label.setPrefHeight(14);
-        label.setLayoutX(125);
-        label.setLayoutY(117);
-        Font font = new Font("Franklin Gothic Heavy", 12);
+        label.setPrefWidth(117 * 1.5);
+        label.setPrefHeight(14 * 1.5);
+        label.setLayoutX(125 * 1.5);
+        label.setLayoutY(117 * 1.5);
+        Font font = new Font("Franklin Gothic Heavy", 18);
         label.setFont(font);
 
         label.setTextFill(Color.rgb(235, 106, 183));

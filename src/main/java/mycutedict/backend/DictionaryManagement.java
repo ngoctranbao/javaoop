@@ -7,6 +7,7 @@ public class DictionaryManagement extends Dictionary {
 
     private final SearchHistory searchHistory = new SearchHistory();
     private final YourWord yourWord = new YourWord();
+    private final Game game = new Game(yourWord.getYourPackage());
 
     public DictionaryManagement() {
         database.importFromFile("src/main/resources/mycutedict/DataFile/recentsearchword.txt", searchHistory.recentWord);
@@ -77,5 +78,9 @@ public class DictionaryManagement extends Dictionary {
 
     public ArrayList<Integer> requireShowUpYourWord() {
         return yourWord.yourPackage;
+    }
+
+    public Game requireGame() {
+        return game;
     }
 }
