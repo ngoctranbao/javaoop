@@ -169,7 +169,7 @@ public abstract class BaseController {
         imageView.setFitHeight(height);
 
         Label label = new Label(text);
-        label.setFont(Font.font("Cambria Math", 10));
+        label.setFont(Font.font("Cambria Math", 11));
         label.setWrapText(true);
         label.setPadding(new Insets(0, 10, 0, 10));
 

@@ -14,9 +14,9 @@ import javafx.scene.media.MediaPlayer;
 import mycutedict.backend.Game;
 import mycutedict.backend.Word;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -36,23 +36,26 @@ public class GamePageController extends BaseController implements Initializable 
     private TextField DictSearchBarField;
 
     @FXML
-    private Label QuestionLabel, ScoreLabel;
+    private Label QuestionLabel, ScoreLabel, FinalScoreLabel;
 
     @FXML
-    private Button Answer1, Answer2, Answer3, Answer4, RestartGameButton;
+    private Button Answer1, Answer2, Answer3, Answer4,
+            RestartGameButton, SoundButton, ReturnButton, TryAgainButton, QuitGameButton;
 
     @FXML
-    private Pane ScenePane;
+    private Pane ScenePane, ScorePane;
 
     private int score;
     private int questionIndex;
+    private ArrayList<String> answers = new ArrayList<>();
+
     private AnswerButton answerButton1 = new AnswerButton();
     private AnswerButton answerButton2 = new AnswerButton();
     private AnswerButton answerButton3 = new AnswerButton();
     private AnswerButton answerButton4 = new AnswerButton();
 
     private static MediaPlayer mediaPlayer;
-
+    private boolean isPlayingMusic;
     private Word firstWord, currentWord;
 
     @Override
@@ -60,10 +63,9 @@ public class GamePageController extends BaseController implements Initializable 
         Common.dateSetUp(DateLabel);
         buttonsSetUp();
         listViewsSetUp();
-        score = 0;
         setUpFirstQuest();
-        ScoreLabel.setText(String.valueOf(score));
         playMusic();
+        ScorePane.setVisible(false);
     }
 
     // Switch to Home Page
@@ -95,12 +97,25 @@ public class GamePageController extends BaseController implements Initializable 
         }
     }
 
+    // Switch to Your Words (Saved Words Page)
+    public void switchToYourWordsPage(ActionEvent event) throws IOException {
+        mediaPlayer.stop();
+        switchToOtherPage("YourWordsPage.fxml", event);
+    }
+
+    /**
+     * Restart game/play again
+     */
     public void restartGame(ActionEvent event) throws IOException {
+        ScorePane.setVisible(false);
         score = 0;
         setUpFirstQuest();
         ScoreLabel.setText(String.valueOf(score));
     }
 
+    /**
+     * Initialize mediaPlayer to play music.
+     */
     private void playMusic() {
         if (mediaPlayer == null) {
             String musicFile = Objects.requireNonNull(getClass().getResource("/mycutedict/Music/Price_Tag.mp3")).toExternalForm();
@@ -110,15 +125,42 @@ public class GamePageController extends BaseController implements Initializable 
         } else {
             mediaPlayer.play(); // If mediaPlayer is already initialized, play the music again
         }
+        isPlayingMusic = true;
     }
 
+    /**
+     * Turn on, turn off music.
+     */
+    public void handleSound(ActionEvent event) throws IOException {
+        if(isPlayingMusic) {
+            ButtonSetUp(SoundButton, Common.ExitSoundButtonImage, 21, 21,
+                    565, 81);
+            mediaPlayer.pause();
+            isPlayingMusic = false;
+        } else {
+            ButtonSetUp(SoundButton, Common.GameSoundButtonImage, 21, 21,
+                    565, 81);
+            mediaPlayer.play();
+            isPlayingMusic = true;
+        }
+    }
+
+    /**
+     * Setting up the first question when first start game.
+     */
     private void setUpFirstQuest() {
+        score = 0;
         questionIndex = 0;
         Common.dictionaryManagement.requireGame().random10Words();
         firstWord = Common.dictionaryManagement.getDatabase().get(Game.tenWords.get(0));
         setUpOneQuestion(firstWord);
+        ScoreLabel.setText(String.valueOf(score));
     }
 
+    /**
+     * When an answer box is clicked, check answers, update the score and then
+     * move to the next question.
+     */
     public void moveToNextQuestion(ActionEvent event) throws IOException {
         if(questionIndex < 9) {
             Button clickedButton = (Button) event.getSource();
@@ -137,11 +179,16 @@ public class GamePageController extends BaseController implements Initializable 
             wordIndex = Game.tenWords.get(questionIndex);
             currentWord = Common.dictionaryManagement.getDatabase().get(wordIndex);
             setUpOneQuestion(currentWord);
+
         } else {
-            if (mediaPlayer != null) {
-                mediaPlayer.stop();
+            Button clickedButton = (Button) event.getSource();
+            boolean answer = checkAnswer(clickedButton, currentWord);
+            if(answer) {
+                score++;
             }
-            switchToOtherPage("YourWordsPage.fxml", event);
+            ScoreLabel.setText(String.valueOf(score));
+            FinalScoreLabel.setText(String.valueOf(score));
+            ScorePane.setVisible(true);
         }
     }
 
@@ -150,24 +197,24 @@ public class GamePageController extends BaseController implements Initializable 
         Integer integer = Common.dictionaryManagement.search(word.getWord_target());
         QuestionLabel.setText("What is the meaning of\n" + word.getWord_target() + "?");
         Common.dictionaryManagement.requireGame().random4Answers(integer);
-        String answer1 = Common.dictionaryManagement.getDatabase().
-                get(Game.fourWordsEachQuestion.get(0)).getWord_explain();
-        String answer2 = Common.dictionaryManagement.getDatabase().
-                get(Game.fourWordsEachQuestion.get(1)).getWord_explain();
-        String answer3 = Common.dictionaryManagement.getDatabase().
-                get(Game.fourWordsEachQuestion.get(2)).getWord_explain();
-        String answer4 = Common.dictionaryManagement.getDatabase().
-                get(Game.fourWordsEachQuestion.get(3)).getWord_explain();
+        answers.clear();
+        for(int i = 0; i < 3; ++i) {
+            answers.add(Common.dictionaryManagement.getDatabase().
+                    get(Game.fourWordsEachQuestion.get(0)).getWord_explain());
+        }
         answerButton1 = ButtonSetUp(answerButton1, Answer1, Common.AnswerBoxImage,
-                120 * 1.5, 29 * 1.5, 440, 119 * 1.5, answer1);
+                120 * 1.5, 29 * 1.5, 440, 119 * 1.5, answers.get(0));
         answerButton2 = ButtonSetUp(answerButton2, Answer2, Common.AnswerBoxImage,
-                120 * 1.5, 29 * 1.5, 440, 154 * 1.5, answer2);
+                120 * 1.5, 29 * 1.5, 440, 154 * 1.5, answers.get(1));
         answerButton3 = ButtonSetUp(answerButton3, Answer3, Common.AnswerBoxImage,
-                120 * 1.5, 29 * 1.5, 440, 189 * 1.5, answer3);
+                120 * 1.5, 29 * 1.5, 440, 189 * 1.5, answers.get(2));
         answerButton4 = ButtonSetUp(answerButton4, Answer4, Common.AnswerBoxImage,
-                120 * 1.5, 29 * 1.5, 440, 224 * 1.5, answer4);
+                120 * 1.5, 29 * 1.5, 440, 224 * 1.5, answers.get(3));
     }
 
+    /**
+     * Check if the answer for a question is correct.
+     */
     private boolean checkAnswer(Button clickedButton, Word word) {
         String correctAnswer = word.getWord_explain();
 
@@ -194,6 +241,13 @@ public class GamePageController extends BaseController implements Initializable 
                 38.0/2, 38.0/2);
         ButtonSetUp(RestartGameButton, Common.RestartButtonImage, 98, 31.5,
                 425, 408);
+        ButtonSetUp(SoundButton, Common.GameSoundButtonImage, 21, 21,
+                565, 81);
+        ButtonSetUp(ReturnButton, Common.GameReturnButtonImage, 22.5, 22.5);
+        ButtonSetUp(TryAgainButton, Common.TryAgainButtonImage,
+                44 * 1.5, 17 * 1.5);
+        ButtonSetUp(QuitGameButton, Common.QuitGameButtonImage,
+                44 * 1.5, 17 * 1.5);
     }
 
     /**

@@ -34,14 +34,6 @@ public class DictionaryManagement extends Dictionary {
         return yourWord.indexOfYourWord(temp);
     }
 
-    /** find out the index of word in YourWord
-     * Input: word target
-     * Return: index, if not return -1.*/
-    public int isSaved(String word_target) {
-        int temp = search(word_target);
-        return yourWord.indexOfYourWord(temp);
-    }
-
     public Word requireSearch(String data) {
         int cnt = search(data);
         if (cnt < 0) {

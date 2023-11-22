@@ -142,10 +142,10 @@ public class DictionaryPageController extends BaseController implements Initiali
     /** Save word to Your Words. */
     public void saveWord(ActionEvent event) {
         if(Common.dictionaryManagement.isSaved(word.getWord_target()) == -1) {
-            ButtonSetUp(SaveButton, Common.SaveButtonImage, 35.0/2, 35.0/2, 588, 78);
+            ButtonSetUp(SaveButton, Common.SaveButtonImage, 35.0/2, 35.0/2, 588, 83);
             Common.dictionaryManagement.requireAdd(word.getWord_target());
         } else {
-            ButtonSetUp(SaveButton, Common.UnsavedButtonImage, 35.0/2, 35.0/2, 588, 78);
+            ButtonSetUp(SaveButton, Common.UnsavedButtonImage, 35.0/2, 35.0/2, 588, 83);
             Common.dictionaryManagement.requireRemove(word.getWord_target());
         }
     }

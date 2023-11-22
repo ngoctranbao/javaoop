@@ -36,6 +36,12 @@ public abstract class Common {
     public static final String AddWordPaneImage = "/mycutedict/Image/AddWordPage.png";
     public static final String AnswerBoxImage = "/mycutedict/Image/AnswerBox.png";
     public static final String RestartButtonImage = "/mycutedict/Image/RestartButton.png";
+    public static final String GameSoundButtonImage = "/mycutedict/Image/GameSoundButton.png";
+    public static final String ExitSoundButtonImage = "/mycutedict/Image/ExitSoundButton.png";
+    public static final String GameReturnButtonImage = "/mycutedict/Image/GameReturn.png";
+    public static final String TryAgainButtonImage = "/mycutedict/Image/TryAgain.png";
+    public static final String QuitGameButtonImage = "/mycutedict/Image/QuitGame.png";
+    public static final String FlashCardBoxImage = "/mycutedict/Image/FlashcardBox.png";
 
     public static final DictionaryManagement dictionaryManagement = new DictionaryManagement();
 
