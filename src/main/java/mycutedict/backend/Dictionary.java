@@ -15,6 +15,11 @@ public class Dictionary {
         return database.dictionary;
     }
 
+    /**
+     * Args: looking for a part of a word.
+     * Input: a part of english word.
+     * Output: a list index of potential word in database.
+     */
     public ArrayList<Integer> lookUp(String data) {
         return new ArrayList<>(lookUpFor(roots.get(data.charAt(0)), data.substring(1)));
     }
@@ -28,9 +33,6 @@ public class Dictionary {
             return lookUpFor(node.children.get(data.charAt(0)), data.substring(1));
         }
         else {
-//            if (node.endOfWord) {
-//                ans.add(node.wordIndex);
-//            }
             ans.addAll(disPlay(node));
         }
         return ans;
@@ -50,6 +52,11 @@ public class Dictionary {
         return ans;
     }
 
+    /**
+     * search for word.
+     * Input: a english word
+     * Output: postion of this word
+     */
     public int search(String data) {
         if (roots.containsKey(data.charAt(0))) {
             return searchFor(roots.get(data.charAt(0)),data.substring(1));
@@ -74,8 +81,10 @@ public class Dictionary {
 
 
     /**
-     * Insert a word into the dictionary.
-     * The word to insert.
+     * 
+     * Insert all word to the hash.
+     * Input: none.
+     * Ouput: none.
      */
     private void insert() {
         for (int i = 0; i < database.dictionary.size(); i++) {
@@ -88,7 +97,11 @@ public class Dictionary {
         }
     }
 
-    //Adds a new word to the trie tree.
+    /**
+     * add a word in hash
+     * Input: word, index of word in database
+     * Output none
+     */
     private void insertWord(String string,int wordIndex, Node node) {
         final Node nextChild;
         try {

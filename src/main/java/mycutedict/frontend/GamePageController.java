@@ -9,8 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import mycutedict.backend.Game;
 import mycutedict.backend.Word;
 
@@ -18,7 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class GamePageController extends BaseController implements Initializable {
@@ -53,9 +50,6 @@ public class GamePageController extends BaseController implements Initializable 
     private AnswerButton answerButton2 = new AnswerButton();
     private AnswerButton answerButton3 = new AnswerButton();
     private AnswerButton answerButton4 = new AnswerButton();
-
-    private static MediaPlayer mediaPlayer;
-    private boolean isPlayingMusic;
     private Word firstWord, currentWord;
 
     @Override
@@ -111,21 +105,6 @@ public class GamePageController extends BaseController implements Initializable 
         score = 0;
         setUpFirstQuest();
         ScoreLabel.setText(String.valueOf(score));
-    }
-
-    /**
-     * Initialize mediaPlayer to play music.
-     */
-    private void playMusic() {
-        if (mediaPlayer == null) {
-            String musicFile = Objects.requireNonNull(getClass().getResource("/mycutedict/Music/Price_Tag.mp3")).toExternalForm();
-            Media sound = new Media(musicFile);
-            mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.play();
-        } else {
-            mediaPlayer.play(); // If mediaPlayer is already initialized, play the music again
-        }
-        isPlayingMusic = true;
     }
 
     /**
@@ -198,9 +177,9 @@ public class GamePageController extends BaseController implements Initializable 
         QuestionLabel.setText("What is the meaning of\n" + word.getWord_target() + "?");
         Common.dictionaryManagement.requireGame().random4Answers(integer);
         answers.clear();
-        for(int i = 0; i < 3; ++i) {
+        for(int i = 0; i < 4; ++i) {
             answers.add(Common.dictionaryManagement.getDatabase().
-                    get(Game.fourWordsEachQuestion.get(0)).getWord_explain());
+                    get(Game.fourWordsEachQuestion.get(i)).getWord_explain());
         }
         answerButton1 = ButtonSetUp(answerButton1, Answer1, Common.AnswerBoxImage,
                 120 * 1.5, 29 * 1.5, 440, 119 * 1.5, answers.get(0));

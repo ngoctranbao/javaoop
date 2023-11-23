@@ -25,7 +25,7 @@ public abstract class Common {
     public static final String RecentWordButtonImage = "/mycutedict/Image/RecentWordButton.png";
     public static final String AddWordButtonImage = "/mycutedict/Image/AddWordButton.png";
     public static final String RemoveWordButtonImage = "/mycutedict/Image/RemoveWordButton.png";
-    public static final String Game1ButtonImage = "/mycutedict/Image/Game1Button.png";
+    public static final String Game1ButtonImage = "/mycutedict/Image/GameButton.png";
     public static final String Game2ButtonImage = "/mycutedict/Image/Game2Button.png";
     public static final String ReturnButtonImage = "/mycutedict/Image/ReturnButton.png";
     public static final String SaveButtonImage = "/mycutedict/Image/savedIcon.png";

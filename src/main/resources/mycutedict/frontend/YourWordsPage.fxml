@@ -38,7 +38,6 @@
       <Button fx:id="AddWordButton" layoutX="294.0" layoutY="242.0" mnemonicParsing="false" onAction="#addWordShowUp" />
       <Button fx:id="RemoveWordButton" layoutX="360.0" layoutY="242.0" mnemonicParsing="false" onAction="#removeWordShowUp" />
       <Button fx:id="Game1Button" layoutX="294.0" layoutY="274.0" mnemonicParsing="false" onAction="#switchToGamePage" />
-      <Button fx:id="Game2Button" layoutX="360.0" layoutY="274.0" mnemonicParsing="false" />
       <ListView fx:id="YourWordView" layoutX="446.0" layoutY="150.0" prefHeight="213.0" prefWidth="189.0" />
       <ListView fx:id="SearchWordView" layoutX="446.0" layoutY="150.0" prefHeight="213.0" prefWidth="189.0" />
       <ListView fx:id="LookUpView" layoutX="716.0" layoutY="143.0" prefHeight="126.0" prefWidth="142.0" />

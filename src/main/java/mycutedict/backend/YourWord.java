@@ -9,6 +9,12 @@ public class YourWord {
         return yourPackage;
     }
 
+    /**
+     * remove word from your word
+     * @param e
+     * Input: index of this word
+     * Output: 
+     */
     protected void requireRemove(Integer e) {
         for (Integer integer:yourPackage) {
             if (integer.equals(e)) {
@@ -18,6 +24,12 @@ public class YourWord {
         }
     }
 
+    /**
+     * add word from your word
+     * @param e
+     * Input: index of this word
+     * Output: 
+     */
     protected void requireAdd(Integer e) {
         if (yourPackage.size() >= 1000) {
             System.out.println("Sorry, you reach limit. Please remove some word and add again!");

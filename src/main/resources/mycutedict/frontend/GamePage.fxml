@@ -73,5 +73,33 @@
             <Font name="System Bold" size="10.0" />
          </font>
       </Label>
+      <Button fx:id="SoundButton" layoutX="540.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleSound" />
+      <AnchorPane fx:id="ScorePane" layoutX="265.0" layoutY="176.0" prefHeight="172.5" prefWidth="325.0">
+         <children>
+            <ImageView fitHeight="172.5" fitWidth="325.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../Image/ScorePane.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="TryAgainButton" layoutX="150.0" layoutY="120.0" mnemonicParsing="false" onAction="#restartGame" />
+            <Button fx:id="QuitGameButton" layoutX="220.5" layoutY="120.0" mnemonicParsing="false" onAction="#switchToYourWordsPage" />
+            <Label fx:id="WordNotFound" layoutX="8.0" layoutY="6.0" prefHeight="25.0" prefWidth="67.0" wrapText="true">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="32.0" fitWidth="185.0" layoutX="70.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/AddWordSearchBar.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="FinalScoreLabel" layoutX="158.0" layoutY="70.0" prefHeight="32.0" prefWidth="52.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="ReturnButton" layoutX="429.0" layoutY="83.0" mnemonicParsing="false" onAction="#switchToYourWordsPage" />
    </children>
 </AnchorPane>

@@ -7,6 +7,12 @@ public class SearchHistory {
     private final static int limit = 50;
     public ArrayList<Integer> recentWord = new ArrayList<>();
 
+    /**
+     * every time search a word, this word be added in history
+     * @param e
+     * Input: index of word
+     * Output:
+     */
     public void newSearch(int e) {
         while (recentWord.size() >= limit) {
             recentWord.remove(recentWord.size() - 1);
@@ -19,9 +25,5 @@ public class SearchHistory {
             return null;
         }
         return recentWord;
-    }
-
-    public int getLimit() {
-        return limit;
     }
 }

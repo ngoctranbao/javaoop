@@ -13,6 +13,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import mycutedict.backend.Word;
@@ -22,6 +24,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class BaseController {
+    protected static MediaPlayer mediaPlayer;
+    protected static boolean isPlayingMusic;
+
     /**
      * Set up all the buttons in a page.
      */
@@ -40,6 +45,22 @@ public abstract class BaseController {
     /**
      * Switch to another page using an ActionEvent (Except dictionaryPage).
      */
+
+    /**
+     * Initialize mediaPlayer to play music.
+     */
+    protected void playMusic() {
+        if (mediaPlayer == null) {
+            String musicFile = Objects.requireNonNull(getClass().getResource("/mycutedict/Music/Price_Tag.mp3")).toExternalForm();
+            Media sound = new Media(musicFile);
+            mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.play();
+        } else {
+            mediaPlayer.play(); // If mediaPlayer is already initialized, play the music again
+        }
+        isPlayingMusic = true;
+    }
+
     protected void switchToOtherPage(String fxmlFile, ActionEvent Event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = fxmlLoader.load();

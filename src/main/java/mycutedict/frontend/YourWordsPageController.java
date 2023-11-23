@@ -72,9 +72,7 @@ public class YourWordsPageController extends BaseController implements Initializ
         ButtonSetUp(RemoveWordButton, Common.RemoveWordButtonImage,
                 196.0/2, 21 * 1.5, 527, 373);
         ButtonSetUp(Game1Button, Common.Game1ButtonImage,
-                196.0/2, 21 * 1.5, 425, 413);
-        ButtonSetUp(Game2Button, Common.Game2ButtonImage,
-                196.0/2, 21 * 1.5, 527, 413);
+                196.0, 21 * 1.5, 425, 413);
         ButtonSetUp(DictSearchButton, Common.SearchIconButtonImage,
                 38.0/2, 38.0/2);
         ButtonSetUp(OkButton, Common.OKButtonImage,

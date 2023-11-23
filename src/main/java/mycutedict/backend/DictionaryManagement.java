@@ -28,12 +28,18 @@ public class DictionaryManagement extends Dictionary {
 
     /** find out the index of word in YourWord
      * Input: word target
-     * Return: index, if not return -1.*/
+     * Return: index, if not return -1.
+     * */
     public int isSaved(String word_target) {
         int temp = search(word_target);
         return yourWord.indexOfYourWord(temp);
     }
 
+    /**
+     * search word.
+     * Input: english word.
+     * Output: this word.
+     */
     public Word requireSearch(String data) {
         int cnt = search(data);
         if (cnt < 0) {
@@ -43,6 +49,11 @@ public class DictionaryManagement extends Dictionary {
         return database.dictionary.get(cnt);
     }
 
+    /**
+     * search word.
+     * Input: index of word in database.
+     * Output: this word.
+     */
     public Word requireSearch(Integer cnt) {
         if (cnt < 0) {
             return  null;
@@ -51,10 +62,23 @@ public class DictionaryManagement extends Dictionary {
         return database.dictionary.get(cnt);
     }
 
+    /**
+     * history all word had been search
+     * Input:
+     * Output: list index of word
+     */
     public ArrayList<Integer> requireShowUpRecentWord() {
         return searchHistory.getRecentWord();
     }
 
+
+    /**
+     *
+     * @param data
+     * Add word to your word
+     * Input: English word
+     * Output:
+     */
     public void requireAdd(String data) {
         int cnt = search(data);
         if (cnt < 0) {
@@ -66,6 +90,12 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
+    /**
+     * remove word from your word
+     * @param data
+     * Input: English word
+     * Output:
+     */
     public void requireRemove(String data) {
         int cnt = search(data);
         if (cnt < 0) {
@@ -76,6 +106,13 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
+    /**
+     *
+     * @return
+     * show all word in your word
+     * Input:
+     * Output: list index of word.
+     */
     public ArrayList<Integer> requireShowUpYourWord() {
         return yourWord.yourPackage;
     }
