@@ -54,6 +54,7 @@ public abstract class BaseController {
             String musicFile = Objects.requireNonNull(getClass().getResource("/mycutedict/Music/Price_Tag.mp3")).toExternalForm();
             Media sound = new Media(musicFile);
             mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
             mediaPlayer.play();
         } else {
             mediaPlayer.play(); // If mediaPlayer is already initialized, play the music again
