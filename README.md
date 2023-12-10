@@ -1,4 +1,4 @@
-# App học Tiếng Anh MyCuteDict
+# App học Tiếng Anh MyCuteDict (Dự án chính ở branch nguyen)
 >Bài tập môn OOP - Nhóm 8
 
 ## Contributors
