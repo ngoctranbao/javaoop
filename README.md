@@ -11,9 +11,11 @@
 - Mở [drawio](https://app.diagrams.net/#G1tqFMMrJH-Wwlo196BQFnD1s2UjnQV4Is) để truy cập.
 
 ***Hình ảnh minh họa***
+***Backend***
 
 ![Backend](dictionary-Backend.drawio.png)
 
+***Frontend***
 ![Frontend](dictionary-Frontend.drawio.png)
 
 ## References
