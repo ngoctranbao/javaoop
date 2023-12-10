@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Database {
     private static final String URL = "jdbc:sqlite:src/main/resources/mycutedict/DataFile/dict_hh.db";
     private Connection connection;
-    protected ArrayList<Word> dictionary = new ArrayList<>();
+    ArrayList<Word> dictionary = new ArrayList<>();
 
     public Database() {
         try {
@@ -160,7 +160,7 @@ public class Database {
         }
     }
 
-    protected void exportToFile(String name, ArrayList<Integer> dic) {
+    public void exportToFile(String name, ArrayList<Integer> dic) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(name));
             int cnt = 0;
