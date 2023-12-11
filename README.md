@@ -8,7 +8,7 @@
 
 ## Sơ đồ cây thừa kế
 >[drawio](https://drive.google.com/file/d/1tqFMMrJH-Wwlo196BQFnD1s2UjnQV4Is/view?usp=sharing): Sơ đồ cây thừa kế (Có 2 tab backend và frontend)
-- Mở [drawio]([https://app.diagrams.net/#G1tqFMMrJH-Wwlo196BQFnD1s2UjnQV4Is](https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=dictionary.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1tqFMMrJH-Wwlo196BQFnD1s2UjnQV4Is%26export%3Ddownload)) để truy cập.
+- Mở [drawio](https://viewer.diagrams.net/index.html?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=dictionary.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1tqFMMrJH-Wwlo196BQFnD1s2UjnQV4Is%26export%3Ddownload) để truy cập.
 
 ***Hình ảnh minh họa***
 
