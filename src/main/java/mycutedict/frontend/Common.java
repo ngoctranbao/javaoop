@@ -41,7 +41,9 @@ public abstract class Common {
     public static final String GameReturnButtonImage = "/mycutedict/Image/GameReturn.png";
     public static final String TryAgainButtonImage = "/mycutedict/Image/TryAgain.png";
     public static final String QuitGameButtonImage = "/mycutedict/Image/QuitGame.png";
-    public static final String FlashCardBoxImage = "/mycutedict/Image/FlashcardBox.png";
+    public static final String GGTranslateButtonImage = "/mycutedict/Image/GgTranslateButton.png";
+    public static final String TranslateButtonImage = "/mycutedict/Image/TranslateButton.png";
+    public static final String ChooseLanguageButtonImage = "/mycutedict/Image/ChooseLanguageButton.png";
 
     public static final DictionaryManagement dictionaryManagement = new DictionaryManagement();
 

@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 
 public class HomePageController extends BaseController implements Initializable {
     @FXML
-    private Button SettingButton, YourWordButton, EnterRecentWordButton, SearchIconButton;
+    private Button SettingButton, YourWordButton, EnterRecentWordButton, SearchIconButton, GGTranslateButton;
 
     @FXML
     private Label DateLabel;
@@ -48,7 +48,9 @@ public class HomePageController extends BaseController implements Initializable 
         ButtonSetUp(EnterRecentWordButton, Common.EnterRecentWordButtonImage, 17 * 1.5, 17 * 1.5,
                 442 * 1.5, 57 * 1.5);
 
-        ButtonSetUp(SearchIconButton, Common.SearchIconButtonImage, 38.0 * 1.5/3, 38.0 * 1.5/3);
+        ButtonSetUp(SearchIconButton, Common.SearchIconButtonImage,
+                38.0 * 1.5/3, 38.0 * 1.5/3);
+        ButtonSetUp(GGTranslateButton, Common.GGTranslateButtonImage, 73.5, 20);
     }
 
     /**
@@ -81,6 +83,10 @@ public class HomePageController extends BaseController implements Initializable 
                 switchToDictionaryPage("HomePage.fxml", event, null, word);
             }
         }
+    }
+
+    public void switchToAPIPage(ActionEvent event) throws IOException {
+        switchToOtherPage("GoogleTranslatePage.fxml", event);
     }
 
     /**

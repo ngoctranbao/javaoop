@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90f4c5ba-2622-4309-8847-1e4caa3ef715" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Read_Me.md" beforeDir="false" afterPath="$PROJECT_DIR$/Read_Me.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary-Backend.drawio.png" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary-Backend.drawio.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary-Frontend.drawio.png" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary-Frontend.drawio.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mycutedict/frontend/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mycutedict/frontend/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mycutedict/frontend/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mycutedict/frontend/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mycutedict/DataFile/recentsearchword.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mycutedict/DataFile/recentsearchword.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mycutedict/Image/TranslateButton.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mycutedict/Image/TranslateButton.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mycutedict/frontend/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mycutedict/frontend/HomePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mycutedict/DataFile/recentsearchword.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mycutedict/DataFile/recentsearchword.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mycutedict/frontend/Common.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mycutedict/frontend/Common.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mycutedict/frontend/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mycutedict/frontend/HomePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mycutedict/frontend/HomePageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mycutedict/frontend/HomePageController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +55,7 @@
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;nguyen&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/khuatduchoa/Documents/Java Libarary Installed/lib&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,

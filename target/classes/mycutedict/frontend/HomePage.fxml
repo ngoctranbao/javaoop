@@ -31,7 +31,6 @@
             <String fx:value="list-view" />
             <String fx:value="scroll-bar" />
          </styleClass></ListView>
-      <ListView fx:id="LookUpView" layoutX="441.0" layoutY="148.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="141.0" prefWidth="162.0" />
       <StackPane layoutX="439.0" layoutY="115.0" prefHeight="30.5" prefWidth="189.0">
          <children>
             <ImageView fitHeight="30.5" fitWidth="189.0" pickOnBounds="true" preserveRatio="true">
@@ -43,5 +42,7 @@
             <Button fx:id="SearchIconButton" mnemonicParsing="false" onAction="#switchToDictionaryPage" prefHeight="33.0" prefWidth="16.0" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
+      <Button fx:id="GGTranslateButton" layoutX="543.0" layoutY="419.0" mnemonicParsing="false" onAction="#switchToAPIPage" prefHeight="25.0" prefWidth="48.0" />
+      <ListView fx:id="LookUpView" layoutX="441.0" layoutY="148.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="141.0" prefWidth="162.0" />
    </children>
 </AnchorPane>
