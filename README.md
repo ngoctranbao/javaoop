@@ -16,5 +16,6 @@
 
 ![Frontend](dictionary-Frontend.drawio.png)
 
+- Video demo tính năng GoogleTranslateAPI: [Video](https://drive.google.com/drive/folders/17QtVHQZZpdS6F98qDG_SzSROOcxgrAw2)
 ## References
 - Design: Sử dung [canva](https://www.canva.com/) và [flaticon](https://www.flaticon.com/)
